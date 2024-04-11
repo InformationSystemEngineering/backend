@@ -1,8 +1,10 @@
 package com.example.IIS.controller;
 
+import com.example.IIS.domain.User;
 import com.example.IIS.dto.JWTAuthResponse;
 import com.example.IIS.dto.LoginDTO;
 import com.example.IIS.dto.RegisterDTO;
+import com.example.IIS.exception.ApiResponse;
 import com.example.IIS.service.AuthService;
 
 import org.springframework.http.HttpStatus;
@@ -35,8 +37,8 @@ public class AuthController {
 
     // Build Register REST API
     @PostMapping(value = {"/register", "/signup"})
-    public ResponseEntity<String> register(@RequestBody RegisterDTO registerDto){
-        String response = authService.register(registerDto);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    public ResponseEntity<ApiResponse> register(@RequestBody RegisterDTO registerDto){
+        return authService.register(registerDto);
     }
+
 }

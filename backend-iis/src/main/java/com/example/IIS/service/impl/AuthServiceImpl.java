@@ -5,6 +5,7 @@ import com.example.IIS.domain.User;
 import com.example.IIS.domain.enums.UserRole;
 import com.example.IIS.dto.LoginDTO;
 import com.example.IIS.dto.RegisterDTO;
+import com.example.IIS.exception.ApiResponse;
 import com.example.IIS.exception.IISException;
 import com.example.IIS.repository.RoleRepo;
 import com.example.IIS.repository.UserRepo;
@@ -12,6 +13,7 @@ import com.example.IIS.security.JwtTokenProvider;
 import com.example.IIS.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -54,7 +56,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String register(RegisterDTO registerDto) {
+    public ResponseEntity<ApiResponse> register(RegisterDTO registerDto) {
 
         // add check for username exists in database
         if(userRepository.existsByUsername(registerDto.getUsername())){
@@ -79,6 +81,12 @@ public class AuthServiceImpl implements AuthService {
 
         userRepository.save(user);
 
-        return "User registered successfully!.";
+//        ApiResponse response = new ApiResponse("User registered successfully!.");
+//        return String.valueOf(new ResponseEntity<>(response, HttpStatus.CREATED));
+        // Create ApiResponse object with the success message
+        ApiResponse response = new ApiResponse("User registered successfully!");
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+
     }
 }
