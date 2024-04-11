@@ -1,5 +1,6 @@
 package com.example.IIS.dto;
 
+import com.example.IIS.domain.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,4 +15,5 @@ public class RegisterDTO {
     private String username;
     private String email;
     private String password;
+    private UserRole role;
 }
