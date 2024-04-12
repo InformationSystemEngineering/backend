@@ -32,6 +32,8 @@ public class AuthServiceImpl implements AuthService {
     private UserRepo userRepository;
     @Autowired
     private RoleRepo roleRepository;
+
+
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -46,6 +48,8 @@ public class AuthServiceImpl implements AuthService {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()));
 
+
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = jwtTokenProvider.generateToken(authentication);
@@ -54,7 +58,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String register(RegisterDTO registerDto) {
+    public User register(RegisterDTO registerDto) {
 
         // add check for username exists in database
         if(userRepository.existsByUsername(registerDto.getUsername())){
@@ -72,13 +76,11 @@ public class AuthServiceImpl implements AuthService {
         user.setEmail(registerDto.getEmail());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
-        Set<Role> roles = new HashSet<>();
-        Role userRole = roleRepository.findByName(UserRole.REGISTERED_USER).get();
-        roles.add(userRole);
-        user.setRoles(roles);
+
+        user.setRole(roleRepository.findByName(UserRole.REGISTERED_USER));
 
         userRepository.save(user);
 
-        return "User registered successfully!.";
+        return user;
     }
 }

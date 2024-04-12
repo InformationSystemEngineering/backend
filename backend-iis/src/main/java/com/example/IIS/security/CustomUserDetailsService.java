@@ -1,6 +1,7 @@
 package com.example.IIS.security;
 
 
+import com.example.IIS.domain.Role;
 import com.example.IIS.domain.User;
 import com.example.IIS.repository.UserRepo;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,11 +31,12 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found with username or email: " + usernameOrEmail);
         }
 
-        Set<GrantedAuthority> authorities = user
-                .getRoles()
-                .stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
-                .collect(Collectors.toSet());
+        // Get the single role for the user
+        Role role = user.getRole();
+
+        // Create a set of granted authorities with the single role
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority(role.getName().name()));
 
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(),
