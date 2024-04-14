@@ -77,12 +77,19 @@ public class AuthServiceImpl implements AuthService {
         user.setEmail(registerDto.getEmail());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
-       if(registerDto.isRegisterAsStudent()){
-           user.setRole(roleRepository.findByName(UserRole.STUDENT));
+       if(!registerDto.isPsychologist()) {
+           if(registerDto.isRegisterAsStudent()){
+               user.setRole(roleRepository.findByName(UserRole.STUDENT));
+           }
+           else {
+               user.setRole(roleRepository.findByName(UserRole.REGISTERED_USER));
+           }
        }
-       else {
-           user.setRole(roleRepository.findByName(UserRole.REGISTERED_USER));
+       else{
+           user.setRole(roleRepository.findByName(UserRole.PSYCHOLOG));
        }
+
+
 
 
         userRepository.save(user);
