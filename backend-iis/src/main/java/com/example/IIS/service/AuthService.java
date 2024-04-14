@@ -10,5 +10,4 @@ public interface AuthService {
     String login(LoginDTO loginDto);
 
     User register(RegisterDTO registerDto);
-    ResponseEntity<ApiResponse> register(RegisterDTO registerDto);
 }

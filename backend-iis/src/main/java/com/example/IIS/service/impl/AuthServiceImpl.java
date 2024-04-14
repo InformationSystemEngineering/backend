@@ -5,7 +5,6 @@ import com.example.IIS.domain.User;
 import com.example.IIS.domain.enums.UserRole;
 import com.example.IIS.dto.LoginDTO;
 import com.example.IIS.dto.RegisterDTO;
-import com.example.IIS.exception.ApiResponse;
 import com.example.IIS.exception.IISException;
 import com.example.IIS.repository.RoleRepo;
 import com.example.IIS.repository.UserRepo;
@@ -13,7 +12,6 @@ import com.example.IIS.security.JwtTokenProvider;
 import com.example.IIS.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -60,11 +58,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-<<<<<<< HEAD
     public User register(RegisterDTO registerDto) {
-=======
-    public ResponseEntity<ApiResponse> register(RegisterDTO registerDto) {
->>>>>>> 45917f07e30360bb7d28def0bbb1c13566cc52df
 
         // add check for username exists in database
         if(userRepository.existsByUsername(registerDto.getUsername())){
@@ -79,29 +73,27 @@ public class AuthServiceImpl implements AuthService {
         User user = new User();
         user.setName(registerDto.getName());
         user.setUsername(registerDto.getUsername());
+        user.setLastName(registerDto.getLastName());
         user.setEmail(registerDto.getEmail());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-<<<<<<< HEAD
+
+        if(!registerDto.isPsychologist()) {
+            if(registerDto.isRegisterAsStudent()){
+                user.setRole(roleRepository.findByName(UserRole.STUDENT));
+            }
+            else {
+                user.setRole(roleRepository.findByName(UserRole.REGISTERED_USER));
+            }
+        }
+        else{
+            user.setRole(roleRepository.findByName(UserRole.PSYCHOLOG));
+        }
 
 
-        user.setRole(roleRepository.findByName(UserRole.REGISTERED_USER));
+
 
         userRepository.save(user);
 
         return user;
-=======
-        Role userRole = roleRepository.findByName(registerDto.getRole()).get();
-        user.setRole(userRole);
-
-        userRepository.save(user);
-
-//        ApiResponse response = new ApiResponse("User registered successfully!.");
-//        return String.valueOf(new ResponseEntity<>(response, HttpStatus.CREATED));
-        // Create ApiResponse object with the success message
-        ApiResponse response = new ApiResponse("User registered successfully!");
-
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
-
->>>>>>> 45917f07e30360bb7d28def0bbb1c13566cc52df
     }
 }

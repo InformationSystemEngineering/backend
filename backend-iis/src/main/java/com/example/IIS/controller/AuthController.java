@@ -4,7 +4,6 @@ import com.example.IIS.domain.User;
 import com.example.IIS.dto.JWTAuthResponse;
 import com.example.IIS.dto.LoginDTO;
 import com.example.IIS.dto.RegisterDTO;
-import com.example.IIS.exception.ApiResponse;
 import com.example.IIS.service.AuthService;
 
 import org.springframework.http.HttpStatus;
@@ -22,7 +21,6 @@ public class AuthController {
     }
 
     // Build Login REST API
-    @CrossOrigin
     @PostMapping(value = {"/login", "/signin"})
     public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDTO loginDto){
 
@@ -36,18 +34,10 @@ public class AuthController {
     }
 
     // Build Register REST API
-<<<<<<< HEAD
 
     @PostMapping(value = {"/register", "/signup"})
     public ResponseEntity<User> register(@RequestBody RegisterDTO registerDto){
         User response = authService.register(registerDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
-=======
-    @CrossOrigin
-    @PostMapping(value = {"/register", "/signup"})
-    public ResponseEntity<ApiResponse> register(@RequestBody RegisterDTO registerDto){
-        return authService.register(registerDto);
->>>>>>> 45917f07e30360bb7d28def0bbb1c13566cc52df
     }
-
 }

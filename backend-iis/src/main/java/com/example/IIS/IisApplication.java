@@ -13,10 +13,7 @@ public class IisApplication {
 	public ModelMapper modelMapper(){
 		return new ModelMapper();
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> 45917f07e30360bb7d28def0bbb1c13566cc52df
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
