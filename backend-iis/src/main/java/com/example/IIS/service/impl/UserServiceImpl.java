@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
         // get post by id from the database
         User user = userRepository.findById(id).get();
         user.setName(userDTO.getName());
+        user.setLastName(userDTO.getLastName());
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
