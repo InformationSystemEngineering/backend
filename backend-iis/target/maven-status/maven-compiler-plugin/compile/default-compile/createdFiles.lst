@@ -10,6 +10,7 @@ com\example\IIS\repository\UserRepo.class
 com\example\IIS\repository\RoleRepo.class
 com\example\IIS\config\SecurityConfig.class
 com\example\IIS\service\impl\CommentServiceImpl.class
+com\example\IIS\exception\ApiResponse.class
 com\example\IIS\dto\RegisterDTO.class
 com\example\IIS\domain\Role.class
 com\example\IIS\service\AuthService.class
@@ -21,6 +22,7 @@ com\example\IIS\IisApplication.class
 com\example\IIS\controller\PostController.class
 com\example\IIS\dto\CommentDto.class
 com\example\IIS\service\CommentService.class
+com\example\IIS\IisApplication$1.class
 com\example\IIS\security\JwtTokenProvider.class
 com\example\IIS\security\JwtAuthenticationEntryPoint.class
 com\example\IIS\service\PostService.class
