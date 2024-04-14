@@ -12,6 +12,7 @@ C:\Users\pc\Desktop\iis-psychology-system\backend-iis\src\main\java\com\example\
 C:\Users\pc\Desktop\iis-psychology-system\backend-iis\src\main\java\com\example\IIS\dto\LoginDTO.java
 C:\Users\pc\Desktop\iis-psychology-system\backend-iis\src\main\java\com\example\IIS\dto\PostDto.java
 C:\Users\pc\Desktop\iis-psychology-system\backend-iis\src\main\java\com\example\IIS\dto\RegisterDTO.java
+C:\Users\pc\Desktop\iis-psychology-system\backend-iis\src\main\java\com\example\IIS\exception\ApiResponse.java
 C:\Users\pc\Desktop\iis-psychology-system\backend-iis\src\main\java\com\example\IIS\exception\IISException.java
 C:\Users\pc\Desktop\iis-psychology-system\backend-iis\src\main\java\com\example\IIS\IisApplication.java
 C:\Users\pc\Desktop\iis-psychology-system\backend-iis\src\main\java\com\example\IIS\repository\CommentRepository.java

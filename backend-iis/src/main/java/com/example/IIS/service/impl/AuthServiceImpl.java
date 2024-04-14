@@ -78,6 +78,7 @@ public class AuthServiceImpl implements AuthService {
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
 
+
            if(registerDto.isRegisterAsStudent()){
                user.setRole(roleRepository.findByName(UserRole.STUDENT));
            }

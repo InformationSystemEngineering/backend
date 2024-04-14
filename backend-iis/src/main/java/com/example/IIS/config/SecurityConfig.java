@@ -3,6 +3,7 @@ package com.example.IIS.config;
 
 import com.example.IIS.security.JwtAuthenticationEntryPoint;
 import com.example.IIS.security.JwtAuthenticationFilter;
+import com.example.IIS.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -26,6 +27,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private UserDetailsService userDetailsService;
+
 
     private JwtAuthenticationEntryPoint authenticationEntryPoint;
 
@@ -56,6 +58,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception
