@@ -17,6 +17,8 @@ public class RegisterDTO {
     private String email;
     private String password;
     private boolean registerAsStudent;
-    private boolean isPsychologist;
+    private boolean registerAsPsychologist;
+    private boolean registerAsManager;
+
 
 }

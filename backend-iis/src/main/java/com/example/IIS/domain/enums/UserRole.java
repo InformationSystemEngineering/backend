@@ -6,7 +6,9 @@ public enum UserRole {
 
     STUDENT,
 
-    PSYCHOLOG
+    PSYCHOLOG,
+
+    MANAGER,
 
 
 }
