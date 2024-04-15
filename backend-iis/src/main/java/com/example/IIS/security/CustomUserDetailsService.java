@@ -36,7 +36,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         // Create a set of granted authorities with the single role
         Set<GrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority(role.getName().name()));
+        authorities.add(new SimpleGrantedAuthority(role.getName()));
 
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(),

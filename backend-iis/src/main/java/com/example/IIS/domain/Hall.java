@@ -1,24 +1,27 @@
 package com.example.IIS.domain;
 
-import com.example.IIS.domain.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.catalina.users.GenericRole;
-import org.springframework.security.core.GrantedAuthority;
 
-@Getter
+import java.util.HashSet;
+import java.util.Set;
+
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "roles")
-public class Role {
-
+public class Hall {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private Integer capacity;
+    private Boolean isFree;
+
+    @OneToMany(mappedBy = "hall", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Workshop> workshops = new HashSet<Workshop>();
 }

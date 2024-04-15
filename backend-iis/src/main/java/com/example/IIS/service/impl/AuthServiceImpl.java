@@ -80,19 +80,19 @@ public class AuthServiceImpl implements AuthService {
 
 
            if(registerDto.isRegisterAsStudent()){
-               user.setRole(roleRepository.findByName(UserRole.STUDENT));
+               user.setRole(roleRepository.findByName("ROLE_STUDENT"));
            }
            else if(registerDto.isRegisterAsPsychologist()){
                System.out.println("Setting role to PSYCHOLOG.");
-               user.setRole(roleRepository.findByName(UserRole.PSYCHOLOG));
+               user.setRole(roleRepository.findByName("ROLE_PSYCHOLOG"));
            }
            else if(registerDto.isRegisterAsManager()){
                System.out.println("Setting role to MANAGER.");
-               user.setRole(roleRepository.findByName(UserRole.MANAGER));
+               user.setRole(roleRepository.findByName("ROLE_MANAGER"));
            }
            else  {
                System.out.println("oops.");
-               user.setRole(roleRepository.findByName(UserRole.REGISTERED_USER));
+               user.setRole(roleRepository.findByName("ROLE_REGISTERED_USER"));
            }
 
 
