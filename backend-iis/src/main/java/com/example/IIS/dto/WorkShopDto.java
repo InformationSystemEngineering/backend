@@ -33,11 +33,11 @@ public class WorkShopDto {
 
     private double price;
 
-//    private List<String> images;
-//
-//    private Long psychologistId;
-//
-//    private List<Long> userIds;
-//
-//    private Long hallId;
+    private List<String> images;
+
+    private Long psychologistId;
+
+    private List<Long> userIds;
+
+    private Long hallId;
 }

@@ -48,7 +48,7 @@ public class Workshop {
     private Psychologist psychologist;
 
     @ManyToMany(mappedBy = "workshops")
-    private List<User> users;
+    private List<RegisteredUser> users;
 
     @JoinColumn(name = "hall_id")
     @ManyToOne(fetch=FetchType.LAZY)

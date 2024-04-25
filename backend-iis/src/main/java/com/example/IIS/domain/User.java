@@ -41,11 +41,5 @@ public class User {
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_workshop",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "workshop_id")
-    )
-    private Set<Workshop> workshops = new HashSet<Workshop>();
+
 }
