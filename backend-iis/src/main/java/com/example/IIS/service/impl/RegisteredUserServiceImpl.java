@@ -9,6 +9,7 @@ import com.example.IIS.dto.RegisterDTO;
 import com.example.IIS.dto.RegisteredUserDto;
 import com.example.IIS.repository.PsychologistRepo;
 import com.example.IIS.repository.RegisteredUserRepo;
+import com.example.IIS.repository.RoleRepo;
 import com.example.IIS.service.RegisteredUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
     @Autowired
     private ModelMapper mapper;
 
+    @Autowired
+    private RoleRepo roleRepository;
+
     private RegisteredUserDto mapToDTO(RegisteredUser registeredUser){
         RegisteredUserDto registeredUserDto = mapper.map(registeredUser, RegisteredUserDto.class);
         return registeredUserDto;
@@ -40,6 +44,15 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
     @Override
     public RegisteredUserDto createReg(RegisteredUserDto registerDTO) {
         RegisteredUser registeredUser=mapToEntity(registerDTO);
+
+        if(registerDTO.isStudent()==true){
+            registeredUser.setRole(roleRepository.findByName("ROLE_STUDENT"));
+
+        }
+        else{
+            registeredUser.setRole(roleRepository.findByName("ROLE_REGISTERED_USER"));
+        }
+
         RegisteredUser newRegisteredUser=registeredUserRepo.save(registeredUser);
 
         RegisteredUserDto registeredUserDto=mapToDTO(newRegisteredUser);
