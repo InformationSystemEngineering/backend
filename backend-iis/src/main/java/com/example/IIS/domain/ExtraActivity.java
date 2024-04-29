@@ -1,31 +1,33 @@
 package com.example.IIS.domain;
 
-import com.example.IIS.domain.enums.UserRole;
 import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.catalina.users.GenericRole;
-import org.springframework.security.core.GrantedAuthority;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "role")
-public class Role {
-
+public class ExtraActivity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String activityType;
+    private Date date;
+    private Time startTime;
+    private Time endTime;
 
-    @OneToMany(mappedBy = "role", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<User> users = new HashSet<User>();
-
+    @JoinColumn(name = "fair_psychology_id")
+    @ManyToOne(fetch=FetchType.LAZY)
+    private FairPsychology fairPsychology;
 }
