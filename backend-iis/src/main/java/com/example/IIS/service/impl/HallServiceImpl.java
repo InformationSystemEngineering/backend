@@ -1,6 +1,7 @@
 package com.example.IIS.service.impl;
 
 import com.example.IIS.domain.Hall;
+import com.example.IIS.domain.HallReservation;
 import com.example.IIS.domain.Psychologist;
 import com.example.IIS.dto.HallDto;
 import com.example.IIS.dto.PsychologistDto;
@@ -45,5 +46,26 @@ public class HallServiceImpl implements HallService {
 
         }
         return hallsDto;
+    }
+
+    public List<HallDto> getAll() {
+        List<Hall> halls=hallRepo.findAll();
+        List<HallDto> dtos = new ArrayList<>();
+        for (Hall hall: halls ) {
+            dtos.add(mapToDTO(hall));
+        }
+        return  dtos;
+    }
+
+    @Override
+    public void addNewReservation(HallReservation reservation, Long hallId) {
+        Hall hall = hallRepo.findById(hallId).orElse(null);
+        hall.getHallReservations().add(reservation);
+        hallRepo.save(hall);
+    }
+
+    @Override
+    public Hall getById(Long id) {
+        return hallRepo.findById(id).orElse(null);
     }
 }

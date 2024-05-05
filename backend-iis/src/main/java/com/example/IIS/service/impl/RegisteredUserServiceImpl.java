@@ -45,14 +45,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
     public RegisteredUserDto createReg(RegisteredUserDto registerDTO) {
         RegisteredUser registeredUser=mapToEntity(registerDTO);
 
-        if(registerDTO.isStudent()==true){
-            registeredUser.setRole(roleRepository.findByName("ROLE_STUDENT"));
-
-        }
-        else{
-            registeredUser.setRole(roleRepository.findByName("ROLE_REGISTERED_USER"));
-        }
-
+        registeredUser.setRole(roleRepository.findByName("ROLE_REGISTERED_USER"));
         RegisteredUser newRegisteredUser=registeredUserRepo.save(registeredUser);
 
         RegisteredUserDto registeredUserDto=mapToDTO(newRegisteredUser);

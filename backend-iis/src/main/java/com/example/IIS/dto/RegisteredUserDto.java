@@ -11,7 +11,4 @@ import lombok.Setter;
 @AllArgsConstructor
 public class RegisteredUserDto extends UserDTO{
     private Long id;
-
-    private boolean isStudent;
-
 }
