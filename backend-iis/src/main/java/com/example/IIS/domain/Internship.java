@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -34,4 +35,7 @@ public class Internship {
 
     @OneToOne(mappedBy = "internship")
     private InternshipTest internshipTest;
+
+    @OneToMany(mappedBy = "internship")
+    private Set<StudentInternship> studentInternships;
 }

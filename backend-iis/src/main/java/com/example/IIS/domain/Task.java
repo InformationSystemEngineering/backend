@@ -6,25 +6,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
-
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Student extends User{
+public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "student")
-    private Set<StudentTest> studentTests;
-
-    @OneToMany(mappedBy = "student")
-    private Set<StudentInternship> studentInternships;
-
-    private String facultyName;
-
+    @ManyToOne
+    @JoinColumn(name="student_internship_id")
+    private StudentInternship studentInternship;
 }

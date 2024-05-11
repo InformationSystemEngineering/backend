@@ -1,9 +1,6 @@
 package com.example.IIS.service.impl;
 
-import com.example.IIS.domain.Hall;
-import com.example.IIS.domain.HallReservation;
-import com.example.IIS.domain.Internship;
-import com.example.IIS.domain.InternshipTest;
+import com.example.IIS.domain.*;
 import com.example.IIS.dto.InternshipDto;
 import com.example.IIS.dto.InternshipTestDto;
 import com.example.IIS.dto.StudentDto;
@@ -11,11 +8,13 @@ import com.example.IIS.repository.InternshipTestRepo;
 import com.example.IIS.service.HallReservationService;
 import com.example.IIS.service.HallService;
 import com.example.IIS.service.InternshipTestService;
+import com.example.IIS.service.StudentTestService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -70,5 +69,24 @@ public class InternshipTestServiceImpl implements InternshipTestService {
             return internshipTest;
         }
         return null;
+    }
+
+    @Override
+    public List<InternshipTestDto> GetAll() {
+        List<InternshipTest> tests = internshipTestRepo.findAll();
+        List<InternshipTestDto> dtos = new ArrayList<>();
+        for (InternshipTest test: tests) {
+            dtos.add(mapToDTO(test));
+        }
+        return  dtos;
+    }
+
+    @Override
+    public void doneReviewingTest(long id) {
+        InternshipTest test = internshipTestRepo.findById(id).orElse(null);
+        if(test != null){
+            test.setTestReviewed(true);
+            internshipTestRepo.save(test);
+        }
     }
 }

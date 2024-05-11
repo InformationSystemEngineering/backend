@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface StudentTestRepo extends JpaRepository<StudentTest, Long> {
 
-    StudentTest findStudentTestByStudent_Id(long id);
+    List<StudentTest> findStudentTestsByInternshipTest_Id(long id);
 
     @Query("SELECT st.student FROM StudentTest st WHERE st.internshipTest.id = :internshipTestId")
     List<Student> findStudentsByInternshipTestId(@Param("internshipTestId") Long internshipTestId);

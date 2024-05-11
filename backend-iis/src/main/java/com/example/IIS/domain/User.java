@@ -36,6 +36,8 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
+    @Column
+    private String imageUrl;
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "role_id")

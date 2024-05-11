@@ -6,6 +6,7 @@ import com.example.IIS.domain.StudentTest;
 import com.example.IIS.dto.InternshipDto;
 import com.example.IIS.dto.InternshipTestDto;
 import com.example.IIS.dto.StudentDto;
+import com.example.IIS.dto.StudentTestDto;
 import com.example.IIS.service.InternshipService;
 import com.example.IIS.service.InternshipTestService;
 import com.example.IIS.service.StudentTestService;
@@ -62,9 +63,21 @@ public class InternshipController {
         return new ResponseEntity<>(internships, HttpStatus.OK);
     }
 
+    @GetMapping("/test")
+    public ResponseEntity<List<InternshipTestDto>> getAllInternshipTests(){
+        List<InternshipTestDto> tests = testService.GetAll();
+        return new ResponseEntity<>(tests, HttpStatus.OK);
+    }
+
     @GetMapping("/students/{id}")
     public ResponseEntity<List<StudentDto>> getStudentsByInternshipTest(@PathVariable(name = "id") long id){
         List<StudentDto> students = studentTestService.getStudentsByInternshipTest(id);
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+
+    @GetMapping("/student-test/by-internship-test-id/{id}")
+    public ResponseEntity<List<StudentTestDto>> getStudentTestsByInternshipTest(@PathVariable(name = "id") long id){
+        List<StudentTestDto> students = studentTestService.getStudentTestsByInternshipTest(id);
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 

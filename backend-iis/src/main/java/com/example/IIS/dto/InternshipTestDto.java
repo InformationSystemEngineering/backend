@@ -20,4 +20,5 @@ public class InternshipTestDto {
     private int internshipId;
     private Long duration;
     private String time;
+    private boolean testReviewed;
 }

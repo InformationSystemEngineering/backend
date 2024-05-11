@@ -23,6 +23,9 @@ public class InternshipTest {
     @Column(name="maxPoints")
     private int maxPoints;
 
+    @Column(name="testReviewed")
+    private boolean testReviewed;
+
     @Column(name="date")
     private LocalDate date;
 

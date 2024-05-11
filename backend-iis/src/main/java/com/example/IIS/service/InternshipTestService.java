@@ -12,4 +12,7 @@ public interface InternshipTestService {
 
     InternshipTest updateTest(InternshipTestDto dto);
 
+    List<InternshipTestDto> GetAll();
+
+    void doneReviewingTest(long id);
 }
