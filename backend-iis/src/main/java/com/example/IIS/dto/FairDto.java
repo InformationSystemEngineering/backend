@@ -19,4 +19,6 @@ public class FairDto {
     private Date date;
     private Time startTime;
     private Time endTime;
+    private Long facultyId;
+    private boolean publish;
 }

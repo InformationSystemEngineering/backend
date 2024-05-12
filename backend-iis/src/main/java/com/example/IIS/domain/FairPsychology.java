@@ -8,8 +8,6 @@ import lombok.Setter;
 
 import java.util.Set;
 
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -17,23 +15,49 @@ public class FairPsychology {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "psychologist_id")
-    Long psychologistId;
-
-    @Column(name = "fair_id")
-    Long fairId;
 
     @ManyToOne
-    @MapsId("psychologistId")
-    @JoinColumn(name = "psychologist_id")
-    Psychologist psychologist;
+    @JoinColumn(name = "psychologist_id", referencedColumnName = "id")
+    private Psychologist psychologist;
 
     @ManyToOne
-    @MapsId("fairId")
-    @JoinColumn(name = "fair_id")
-    Fair fair;
+    @JoinColumn(name = "fair_id", referencedColumnName = "id")
+    private Fair fair;
 
     @OneToMany(mappedBy = "fairPsychology")
-    Set<ExtraActivity> extraActivitySet;
+    private Set<ExtraActivity> extraActivitySet;
 
+    // Getteri i setteri
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Psychologist getPsychologist() {
+        return psychologist;
+    }
+
+    public void setPsychologist(Psychologist psychologist) {
+        this.psychologist = psychologist;
+    }
+
+    public Fair getFair() {
+        return fair;
+    }
+
+    public void setFair(Fair fair) {
+        this.fair = fair;
+    }
+
+    public Set<ExtraActivity> getExtraActivitySet() {
+        return extraActivitySet;
+    }
+
+    public void setExtraActivitySet(Set<ExtraActivity> extraActivitySet) {
+        this.extraActivitySet = extraActivitySet;
+    }
 }
+

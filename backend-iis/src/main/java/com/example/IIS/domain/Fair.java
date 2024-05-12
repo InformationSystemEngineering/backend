@@ -33,6 +33,8 @@ public class Fair {
 
     private Time endTime;
 
+    private boolean publish;
+
 
     @JoinColumn(name = "faculty_id")
     @ManyToOne(fetch=FetchType.LAZY)

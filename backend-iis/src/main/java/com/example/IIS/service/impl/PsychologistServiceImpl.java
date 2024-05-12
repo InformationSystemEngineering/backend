@@ -11,6 +11,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PsychologistServiceImpl implements PsychologistService {
     @Autowired
@@ -39,4 +42,10 @@ public class PsychologistServiceImpl implements PsychologistService {
 
         PsychologistDto PsyhologistResponse = mapToDTO(newPsychologist);
         return PsyhologistResponse;    }
+
+    @Override
+    public List<PsychologistDto> getPsychologistsForFair(Long fairId) {
+        List<Psychologist> psychologists = psychologistRepo.findByFairId(fairId); // Pretraga psihologa na osnovu fairId
+        return psychologists.stream().map(this::mapToDTO).collect(Collectors.toList()); // Mapiranje psihologa na DTO objekte
+    }
 }
