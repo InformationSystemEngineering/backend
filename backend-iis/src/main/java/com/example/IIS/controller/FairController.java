@@ -37,6 +37,7 @@ public class FairController {
         return new ResponseEntity<>(allFairs, HttpStatus.OK);
     }
 
+
     @CrossOrigin
     @PostMapping
     public ResponseEntity<Void> createFair(@RequestBody FairDto fairDto){
@@ -75,6 +76,7 @@ public class FairController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 
     @CrossOrigin
     @PutMapping("/fair")
