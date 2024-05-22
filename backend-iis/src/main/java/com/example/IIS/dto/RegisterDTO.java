@@ -19,6 +19,4 @@ public class RegisterDTO {
     private boolean registerAsStudent;
     private boolean registerAsPsychologist;
     private boolean registerAsManager;
-
-
 }

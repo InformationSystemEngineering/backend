@@ -19,10 +19,6 @@ public class RegisteredUser extends User{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private boolean isStudent;
-
-
-
     @ManyToMany
     @JoinTable(
             name = "user_workshop",

@@ -1,9 +1,6 @@
 package com.example.IIS.service.impl;
 
-import com.example.IIS.domain.Psychologist;
-import com.example.IIS.domain.RegisteredUser;
-import com.example.IIS.domain.Role;
-import com.example.IIS.domain.User;
+import com.example.IIS.domain.*;
 import com.example.IIS.domain.enums.UserRole;
 import com.example.IIS.dto.*;
 import com.example.IIS.exception.IISException;
@@ -12,6 +9,7 @@ import com.example.IIS.repository.UserRepo;
 import com.example.IIS.security.JwtTokenProvider;
 import com.example.IIS.service.AuthService;
 import com.example.IIS.service.RegisteredUserService;
+import com.example.IIS.service.StudentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,6 +47,8 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private PsychologistServiceImpl psychologistService;
+    @Autowired
+    private StudentService studentService;
 
 
     @Override
@@ -76,9 +76,13 @@ public class AuthServiceImpl implements AuthService {
         return psychologistDto;
     }
 
+    private StudentDto mapToDTO(Student student){
+        StudentDto studentDto = mapper.map(student, StudentDto.class);
+        return studentDto;
+    }
+
     @Override
     public User register(RegisterDTO registerDto) {
-
 
         // add check for username exists in database
         if (userRepository.existsByUsername(registerDto.getUsername())) {
@@ -90,24 +94,17 @@ public class AuthServiceImpl implements AuthService {
             throw new IISException(HttpStatus.BAD_REQUEST, "Email is already exists!.");
         }
 
-//        User user = new User();
-//        user.setName(registerDto.getName());
-//        user.setUsername(registerDto.getUsername());
-//        user.setLastName(registerDto.getLastName());
-//        user.setEmail(registerDto.getEmail());
-//        user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-
-
         if (registerDto.isRegisterAsStudent()) {
-            RegisteredUser registeredUser = new RegisteredUser();
-            registeredUser.setStudent(true);
-            registeredUser.setName(registerDto.getName());
-            registeredUser.setUsername(registerDto.getUsername());
-            registeredUser.setLastName(registerDto.getLastname());
-            registeredUser.setEmail(registerDto.getEmail());
-            registeredUser.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-            RegisteredUserDto registeredUserDto = mapToDTO(registeredUser);
-            registeredUserService.createReg(registeredUserDto);
+            Student student = new Student();
+            student.setRole(roleRepository.findByName("ROLE_STUDENT"));
+            student.setName(registerDto.getName());
+            student.setUsername(registerDto.getUsername());
+            student.setLastName(registerDto.getLastname());
+            student.setEmail(registerDto.getEmail());
+            student.setPassword(passwordEncoder.encode(registerDto.getPassword()));
+            StudentDto studentDto = mapToDTO(student);
+            studentService.createStudent(studentDto);
+
         } else if (registerDto.isRegisterAsPsychologist()) {
             Psychologist psychologist = new Psychologist();
 
@@ -126,7 +123,6 @@ public class AuthServiceImpl implements AuthService {
             RegisteredUser registeredUser = new RegisteredUser();
 
             registeredUser.setRole(roleRepository.findByName("ROLE_REGISTERED_USER"));
-            registeredUser.setStudent(false);
             registeredUser.setName(registerDto.getName());
             registeredUser.setUsername(registerDto.getUsername());
             registeredUser.setLastName(registerDto.getLastname());

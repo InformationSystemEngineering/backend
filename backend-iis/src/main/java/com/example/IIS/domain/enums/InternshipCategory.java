@@ -1,0 +1,11 @@
+package com.example.IIS.domain.enums;
+
+public enum InternshipCategory {
+    MENTAL_HEALTH_CARE,
+    ADDICTION_REHABILITATION,
+    TRAUMA_COUNSELING,
+    CHILD_AND_ADOLESCENT_PSYCHOLOGY,
+    FAMILY_THERAPY,
+    SCHOOL_COUNSELING,
+
+}

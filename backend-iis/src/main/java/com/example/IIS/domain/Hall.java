@@ -20,8 +20,8 @@ public class Hall {
     private Long id;
     private String name;
     private Integer capacity;
-    private Boolean isFree;
 
-    @OneToMany(mappedBy = "hall", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Workshop> workshops = new HashSet<Workshop>();
+    @OneToMany(mappedBy = "hall")
+    private Set<HallReservation> hallReservations;
+
 }

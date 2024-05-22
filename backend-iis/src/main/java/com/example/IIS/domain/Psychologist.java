@@ -25,4 +25,7 @@ public class Psychologist  extends User{
 
     @OneToMany(mappedBy = "psychologist", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<FairPsychology> fairPsychologies = new HashSet<FairPsychology>();
+
+    @OneToMany(mappedBy = "psychologist")
+    private Set<StudentInternship> studentInternships;
 }
