@@ -1,5 +1,7 @@
 package com.example.IIS.domain;
 
+import com.example.IIS.domain.enums.StudentInternshipPriority;
+import com.example.IIS.domain.enums.StudentInternshipStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,4 +22,12 @@ public class Task {
     @ManyToOne
     @JoinColumn(name="student_internship_id")
     private StudentInternship studentInternship;
+
+    private String title;
+
+    private String description;
+
+    private StudentInternshipStatus status;
+
+    private StudentInternshipPriority priority;
 }
