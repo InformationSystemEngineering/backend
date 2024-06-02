@@ -1,15 +1,23 @@
 package com.example.IIS.service.impl;
 
 import com.example.IIS.domain.Post;
+import com.example.IIS.domain.RegisteredUser;
+import com.example.IIS.domain.StudentExtraActivity;
 import com.example.IIS.domain.User;
 import com.example.IIS.dto.PostDto;
+import com.example.IIS.dto.RegisteredUserDto;
+import com.example.IIS.dto.StudentExtraActivityDto;
 import com.example.IIS.dto.UserDTO;
 import com.example.IIS.repository.PostRepository;
 import com.example.IIS.repository.UserRepository;
+import com.example.IIS.service.StudentExtraActivityService;
 import com.example.IIS.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,6 +27,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private ModelMapper mapper;
+
+    @Autowired
+    private StudentExtraActivityService studentExtraActivityService;
 
     @Override
     public UserDTO getUserByEmail(String email) {
@@ -44,5 +55,26 @@ public class UserServiceImpl implements UserService {
     private UserDTO mapToDTO(User user){
         UserDTO userDTO = mapper.map(user, UserDTO.class);
         return userDTO;
+    }
+
+    @Override
+    public List<UserDTO> getUsersByExtraActivityId(long id) {
+        List<UserDTO> users = new ArrayList<>();
+        List<StudentExtraActivityDto> list = studentExtraActivityService.getAll();
+
+        for (StudentExtraActivityDto studentExtraActivity : list) {
+            if (studentExtraActivity.getExtraActivityId().equals(id)) {
+                UserDTO userDto = getById(studentExtraActivity.getUserId());
+                users.add(userDto);
+            }
+        }
+
+        return users;
+    }
+
+    @Override
+    public UserDTO getById(long id) {
+        User user = userRepository.findById(id).get();
+        return mapToDTO(user);
     }
 }

@@ -8,6 +8,7 @@ import com.example.IIS.dto.FairPsychologyDto;
 import com.example.IIS.service.ExtraActivityService;
 import com.example.IIS.service.FacultyService;
 import com.example.IIS.service.FairService;
+import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ public class ExtraActivityController {
     }
 
     @CrossOrigin
+    @PermitAll
     @PostMapping
     public ResponseEntity<Void> createExtraActivity(@RequestBody ExtraActivityDto extraActivityDto){
         extraActivityService.createExtraActivity(extraActivityDto);

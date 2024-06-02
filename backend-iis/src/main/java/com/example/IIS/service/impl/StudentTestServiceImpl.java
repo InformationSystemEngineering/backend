@@ -1,7 +1,9 @@
 package com.example.IIS.service.impl;
 
+import com.example.IIS.domain.FairPsychology;
 import com.example.IIS.domain.Student;
 import com.example.IIS.domain.StudentTest;
+import com.example.IIS.dto.FairPsychologyDto;
 import com.example.IIS.dto.StudentDto;
 import com.example.IIS.dto.StudentTestDto;
 import com.example.IIS.repository.StudentTestRepo;
@@ -40,6 +42,16 @@ public class StudentTestServiceImpl implements StudentTestService {
     private StudentDto mapToDTO(Student student){
         StudentDto studentDto = mapper.map(student, StudentDto.class);
         return studentDto;
+    }
+
+    private StudentTest mapToEntity(StudentTestDto studentTestDto){
+        StudentTest studentTest = mapper.map(studentTestDto, StudentTest.class);
+        return studentTest;
+    }
+
+    private StudentTestDto mapSTToDTO(StudentTest studentTest){
+        StudentTestDto studentTestDto = mapper.map(studentTest, StudentTestDto.class);
+        return studentTestDto;
     }
 
     @Override
@@ -114,6 +126,18 @@ public class StudentTestServiceImpl implements StudentTestService {
         }
         studentInternshipService.create(studentTests);
         return bestStudents;
+    }
+
+    @Override
+    public StudentTestDto createStudentTest(StudentTestDto studentTestDto) {
+
+        // convert DTO to entity
+        StudentTest studentTest = mapToEntity(studentTestDto);
+        StudentTest newStudentTest = studentTestRepo.save(studentTest);
+
+        // convert entity to DTO
+        StudentTestDto studentTestResponse = mapSTToDTO(newStudentTest);
+        return studentTestResponse;
     }
 
 }
