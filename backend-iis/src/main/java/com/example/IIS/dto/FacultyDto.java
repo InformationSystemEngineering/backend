@@ -13,4 +13,5 @@ public class FacultyDto {
     private Long id;
     private String name;
     private Boolean isFree;
+    private String photo;
 }

@@ -1,5 +1,6 @@
 package com.example.IIS.domain;
 
+import com.example.IIS.domain.enums.ActivityType;
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,8 @@ public class ExtraActivity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String activityType;
+    @Enumerated(EnumType.STRING)
+    private ActivityType activityType;
     private Date date;
     private Time startTime;
     private Time endTime;

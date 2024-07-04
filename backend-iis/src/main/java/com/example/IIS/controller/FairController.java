@@ -5,6 +5,7 @@ import com.example.IIS.domain.Fair;
 import com.example.IIS.domain.Psychologist;
 import com.example.IIS.dto.*;
 import com.example.IIS.service.*;
+import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,6 +41,7 @@ public class FairController {
 
     @CrossOrigin
     @PostMapping
+    @PermitAll
     public ResponseEntity<Void> createFair(@RequestBody FairDto fairDto){
         fairService.createFair(fairDto);
         return new ResponseEntity<>(HttpStatus.OK);

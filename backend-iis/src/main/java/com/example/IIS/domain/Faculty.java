@@ -21,6 +21,7 @@ public class Faculty {
     private Long id;
     private String name;
     private Boolean isFree;
+    private String photo;
 
     @OneToMany(mappedBy = "faculty", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Fair> fairs = new HashSet<Fair>();
