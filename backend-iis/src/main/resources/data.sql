@@ -13,13 +13,13 @@ VALUES (2, 'admin@gmail.com', 'adminic', 'admin', '$2a$10$QZbtkoO3UqIW8ataNZzkJu
        (3, 'student@gmail.com', 'Simic', 'Sima', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'simi');
 
 -- Insert faculties
-INSERT INTO faculty(id, name, is_Free, photo)
-VALUES (1, 'Harvard University - Department of Psychology', TRUE, 'https://imageio.forbes.com/specials-images/dam/imageserve/503064668/960x0.jpg?height=474&width=711&fit=bounds'),
-       (2, 'Stanford University - Department of Psychology', TRUE, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-hblL-wFX2-M2bws2XVSIZ2U8UUxrmqEvBA&s'),
-       (3, 'University of California, Berkeley - Department of Psychology', FALSE, 'https://psychology.berkeley.edu/sites/default/files/styles/1000x400sc/public/img_1945.jpg?itok=d_0ve2Io'),
-       (4, 'University of Oxford - Department of Experimental Psychology', FALSE, 'https://www.accessguide.ox.ac.uk/sites/default/files/styles/listing_tile_text_displayed_image/public/accessguide/images/media/new_radcliffe_house_1of1.jpg?itok=34G0tlwB'),
-       (5, 'University of Cambridge - Department of Psychology', TRUE, 'https://d3d00swyhr67nd.cloudfront.net/w800h800/PSY_location_image_1.jpg'),
-       (6, 'Yale University - Department of Psychology', TRUE, 'https://fastly.4sqi.net/img/general/600x600/84154773_raQYLNj4t4CPhQeDPDVeNkBRUcW22bek1CC8GRkI-lQ.jpg');
+INSERT INTO faculty(id, name, is_Free, photo, email)
+VALUES (1, 'Harvard University - Department of Psychology', TRUE, 'https://imageio.forbes.com/specials-images/dam/imageserve/503064668/960x0.jpg?height=474&width=711&fit=bounds', 'katarina.medic01@gmail.com'),
+       (2, 'Stanford University - Department of Psychology', TRUE, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-hblL-wFX2-M2bws2XVSIZ2U8UUxrmqEvBA&s', 'katarina.medic01@gmail.com'),
+       (3, 'University of California, Berkeley - Department of Psychology', TRUE, 'https://psychology.berkeley.edu/sites/default/files/styles/1000x400sc/public/img_1945.jpg?itok=d_0ve2Io', 'katarina.medic01@gmail.com'),
+       (4, 'University of Oxford - Department of Experimental Psychology', TRUE, 'https://www.accessguide.ox.ac.uk/sites/default/files/styles/listing_tile_text_displayed_image/public/accessguide/images/media/new_radcliffe_house_1of1.jpg?itok=34G0tlwB', 'katarina.medic01@gmail.com'),
+       (5, 'University of Cambridge - Department of Psychology', TRUE, 'https://d3d00swyhr67nd.cloudfront.net/w800h800/PSY_location_image_1.jpg', 'katarina.medic01@gmail.com'),
+       (6, 'Yale University - Department of Psychology', TRUE, 'https://fastly.4sqi.net/img/general/600x600/84154773_raQYLNj4t4CPhQeDPDVeNkBRUcW22bek1CC8GRkI-lQ.jpg', 'katarina.medic01@gmail.com');
 
 -- Insert psychologists
 INSERT INTO psychologist(id, biography)
@@ -28,7 +28,7 @@ VALUES (1, 'super'),
 
 -- Insert fairs
 INSERT INTO fair(id, name, description, date, start_time, end_time, faculty_id, publish)
-VALUES (1, 'Psychology Summit International', 'Join us at the Psychology Summit International where global experts gather to discuss the latest advancements and challenges in psychology.', '2024-07-05', '09:00:00', '17:30:00', 1, false),
+VALUES (1, 'Psychology Summit International', 'Join us at the Psychology Summit International where global experts gather to discuss the latest advancements and challenges in psychology.', '2024-07-10', '09:00:00', '17:30:00', 1, false),
        (2, 'Global Psychology Forum', 'The Global Psychology Forum is a premier gathering of psychologists from around the world, focusing on collaborative research and innovative practices.', '2024-06-02', '09:00:00', '17:30:00', 2, true),
        (3, 'International Psychologists Expo', 'Discover groundbreaking research and network with leading psychologists at the International Psychologists Expo, a hub of knowledge exchange.', '2024-07-05', '09:00:00', '17:30:00', 3, true),
        (4, 'Worldwide Psychology Conference', 'Explore diverse perspectives on psychology at the Worldwide Psychology Conference, fostering dialogue on mental health and well-being globally.', '2024-07-06', '09:00:00', '17:30:00', 4, true),

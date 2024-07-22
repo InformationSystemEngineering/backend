@@ -2,8 +2,10 @@ package com.example.IIS.service.impl;
 
 import com.example.IIS.domain.Faculty;
 import com.example.IIS.domain.Hall;
+import com.example.IIS.domain.Post;
 import com.example.IIS.dto.FacultyDto;
 import com.example.IIS.dto.HallDto;
+import com.example.IIS.dto.PostDto;
 import com.example.IIS.repository.FacultyRepository;
 import com.example.IIS.repository.HallRepo;
 import com.example.IIS.service.FacultyService;
@@ -46,5 +48,11 @@ public class FacultyServiceImpl implements FacultyService {
 
         }
         return facultyDtos;
+    }
+
+    @Override
+    public FacultyDto getFacultyById(long id) {
+        Faculty faculty = facultyRepository.findById(id).get();
+        return mapToDTO(faculty);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.IIS.controller;
 
 import com.example.IIS.dto.FacultyDto;
+import com.example.IIS.dto.PostDto;
 import com.example.IIS.dto.WorkShopDto;
 import com.example.IIS.service.FacultyService;
 import com.example.IIS.service.WorkshopService;
@@ -26,5 +27,10 @@ public class FacultyController {
     public ResponseEntity<List<FacultyDto>> getAllFaculties() {
         List<FacultyDto> allFaculties = facultyService.getAllFaculties();
         return new ResponseEntity<>(allFaculties, HttpStatus.OK);
+    }
+
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<FacultyDto> getFacultyById(@PathVariable(name = "id") long id){
+        return ResponseEntity.ok(facultyService.getFacultyById(id));
     }
 }

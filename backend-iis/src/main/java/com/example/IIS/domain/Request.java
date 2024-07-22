@@ -1,29 +1,30 @@
 package com.example.IIS.domain;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Faculty {
+public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Boolean isFree;
-    private String photo;
-    private String email;
+    private Long daysNum;
+    private Date startDate;
+    private Date endDate;
+    private Long capacity;
 
-    @OneToMany(mappedBy = "faculty", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Request> requests = new HashSet<Request>();
+    @JoinColumn(name = "faculty_id")
+    @ManyToOne(fetch=FetchType.LAZY)
+    private Faculty faculty;
+
 }

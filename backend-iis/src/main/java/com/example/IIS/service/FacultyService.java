@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface FacultyService {
     List<FacultyDto> getAllFaculties();
+
+    FacultyDto getFacultyById(long id);
 }
