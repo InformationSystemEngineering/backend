@@ -1,9 +1,7 @@
 package com.example.IIS.service.impl;
 
-import com.example.IIS.domain.FairPsychology;
 import com.example.IIS.domain.Student;
 import com.example.IIS.domain.StudentTest;
-import com.example.IIS.dto.FairPsychologyDto;
 import com.example.IIS.dto.StudentDto;
 import com.example.IIS.dto.StudentTestDto;
 import com.example.IIS.repository.StudentTestRepo;

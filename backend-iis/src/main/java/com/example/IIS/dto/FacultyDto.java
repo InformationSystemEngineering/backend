@@ -12,7 +12,7 @@ import lombok.Setter;
 public class FacultyDto {
     private Long id;
     private String name;
-    private Boolean isFree;
+    private Boolean activeContract;
     private String photo;
     private String email;
 }

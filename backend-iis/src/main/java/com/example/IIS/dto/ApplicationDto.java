@@ -5,17 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Time;
-import java.util.Date;
-
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FairDto {
+public class ApplicationDto {
     private Long id;
     private String name;
-    private Date approvedStartDate;
-    private Date approvedEndDate;
-    private boolean isPublish;
+    private String surname;
+    private String studyYear;
+    private String email;
 }

@@ -9,6 +9,4 @@ import java.util.List;
 
 public interface FairRepository extends JpaRepository<Fair, Long> {
 
-    @Query("SELECT f FROM Fair f INNER JOIN f.fairPsychologies fp WHERE fp IS NOT NULL")
-    List<Fair> findAllFairsWithPsychologist();
 }

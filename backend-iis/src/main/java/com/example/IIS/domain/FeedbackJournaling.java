@@ -37,7 +37,4 @@ public class FeedbackJournaling {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "extra_activity_id", referencedColumnName = "id")
-    private ExtraActivity extraActivity;
 }

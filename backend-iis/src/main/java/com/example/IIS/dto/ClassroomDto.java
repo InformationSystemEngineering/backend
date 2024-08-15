@@ -12,10 +12,12 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FairDto {
+public class ClassroomDto {
     private Long id;
     private String name;
-    private Date approvedStartDate;
-    private Date approvedEndDate;
-    private boolean isPublish;
+    private Date date;
+    private Time startTime;
+    private Time endTime;
+    private Long floor;
+    private Long capacity;
 }

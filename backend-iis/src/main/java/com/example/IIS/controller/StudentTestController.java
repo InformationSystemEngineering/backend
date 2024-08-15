@@ -1,8 +1,6 @@
 package com.example.IIS.controller;
 
-import com.example.IIS.dto.FairPsychologyDto;
 import com.example.IIS.dto.StudentTestDto;
-import com.example.IIS.service.FairPsychologyService;
 import com.example.IIS.service.StudentTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -9,8 +9,9 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FairPsychologyDto {
+public class TopicDto {
     private Long id;
-    private Long psychologistId;
-    private Long fairId;
+    private String name;
+    private Long duration;
+    private Long availableSpots;
 }

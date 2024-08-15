@@ -22,24 +22,15 @@ public class Fair {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
-    private String description;
-
-    private Date date;
-
-    private Time startTime;
-
-    private Time endTime;
-
-    private boolean publish;
-
-
-    @JoinColumn(name = "faculty_id")
-    @ManyToOne(fetch=FetchType.LAZY)
-    private Faculty faculty;
+    private Date approvedStartDate;
+    private Date approvedEndDate;
+    private boolean isPublish;
 
     @OneToMany(mappedBy = "fair", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<FairPsychology> fairPsychologies = new HashSet<FairPsychology>();
+    private Set<Topic> topics = new HashSet<Topic>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "request_id", referencedColumnName = "id")
+    private Request request;
 }

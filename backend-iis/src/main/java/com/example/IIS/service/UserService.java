@@ -10,6 +10,5 @@ public interface UserService {
     UserDTO getUserByEmail(String email);
 
     UserDTO getById(long id);
-    List<UserDTO> getUsersByExtraActivityId(long id);
     UserDTO updateUser(UserDTO userDTO, long id);
 }

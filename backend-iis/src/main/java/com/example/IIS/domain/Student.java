@@ -27,4 +27,7 @@ public class Student extends User{
 
     private String facultyName;
 
+    @OneToMany(mappedBy = "student", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Application> applications = new HashSet<Application>();
+
 }

@@ -21,5 +21,4 @@ public class FeedbackFairDto {
     private String comment;
     private Long extraActivityId;
     private Long userId;
-    private String fairPsychologyFairName;
 }
