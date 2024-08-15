@@ -22,7 +22,7 @@ public class Request {
     private Long id;
     private Date startDate;
     private Date endDate;
-    private Long description;
+    private String description;
     private Status status;
 
     @JoinColumn(name = "faculty_id")
@@ -34,4 +34,8 @@ public class Request {
 
     @OneToOne(mappedBy = "request")
     private Fair fair;
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch=FetchType.LAZY)
+    private User user;
 }
