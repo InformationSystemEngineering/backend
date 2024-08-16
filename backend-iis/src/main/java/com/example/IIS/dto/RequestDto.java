@@ -14,8 +14,11 @@ import java.util.Date;
 @AllArgsConstructor
 public class RequestDto {
     private Long id;
+    private String name;
     private Date startDate;
     private Date endDate;
-    private Long description;
+    private String description;
     private Status status;
+    private Long facultyId;
+    private Long userId;
 }

@@ -62,6 +62,12 @@ public class EmailSender {
         return confirmationToken.getConfirmationToken();
     }
 
+    @Async
+    public void sendEmail(SimpleMailMessage email) throws MailException {
+        javaMailSender.send(email);
+    }
+
+
 }
 
 

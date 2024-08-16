@@ -20,6 +20,7 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
     private Date startDate;
     private Date endDate;
     private String description;
