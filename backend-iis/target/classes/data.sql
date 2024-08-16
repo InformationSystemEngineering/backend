@@ -40,12 +40,17 @@ VALUES ('2024-09-10', '2024-09-15', 1, 3, 'I am writing to request your approval
        ('2024-09-14', '2024-09-30', 2, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 1),
        ('2024-09-23', '2024-09-27', 3, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 1);
 
+-- Insert classroom
+INSERT INTO classroom(name, date, start_time, end_time, floor, capacity, request_id)
+VALUES ('A1', '2024-09-11', '08:30:00', '10:00:00', 1, 60, 1),
+       ('A2', '2024-09-16', '10:30:00', '11:00:00', 1, 45, 2);
+
 
 -- Insert fairs
--- INSERT INTO fair(id, name, description, date, start_time, end_time, faculty_id, publish)
--- VALUES (1, 'Psychology Summit International', 'Join us at the Psychology Summit International where global experts gather to discuss the latest advancements and challenges in psychology.', '2024-07-10', '09:00:00', '17:30:00', 1, false),
---        (2, 'Global Psychology Forum', 'The Global Psychology Forum is a premier gathering of psychologists from around the world, focusing on collaborative research and innovative practices.', '2024-06-02', '09:00:00', '17:30:00', 2, true),
---        (3, 'International Psychologists Expo', 'Discover groundbreaking research and network with leading psychologists at the International Psychologists Expo, a hub of knowledge exchange.', '2024-07-05', '09:00:00', '17:30:00', 3, true),
+INSERT INTO fair(name, approved_start_date, approved_end_date, request_id, is_publish)
+VALUES ('Psychology Summit International', '2024-09-11', '2024-09-13',  1, false),
+       ('Global Psychology Forum',  '2024-09-15', '2024-09-20', 2, false),
+       ('International Psychologists Expo', '2024-09-23', '2024-09-27', 3, false);
 --        (4, 'Worldwide Psychology Conference', 'Explore diverse perspectives on psychology at the Worldwide Psychology Conference, fostering dialogue on mental health and well-being globally.', '2024-07-06', '09:00:00', '17:30:00', 4, true),
 --        (5, 'Global Minds Conference', 'Engage with thought leaders and influencers at the Global Minds Conference, addressing critical issues in psychology affecting communities worldwide.', '2024-06-29', '09:00:00', '17:30:00', 5, false),
 --        (6, 'Cross-Cultural Psychology Symposium', 'Delve into the intersection of cultures and psychology at the Cross-Cultural Psychology Symposium, exploring how cultural contexts shape mental health practices.', '2024-07-01', '09:00:00', '17:30:00', 3, false),
@@ -54,5 +59,18 @@ VALUES ('2024-09-10', '2024-09-15', 1, 3, 'I am writing to request your approval
 --        (9, 'Psychology Innovations Summit', 'Join us at the Psychology Innovations Summit to explore cutting-edge technologies and innovative approaches transforming the field of psychology.', '2024-06-28', '09:00:00', '17:30:00', 1, false);
 
 
+-- Insert reservation
+INSERT INTO reservation(start_time, end_time, classroom_id)
+VALUES ('08:30:00', '09:30:00', 1),
+       ('10:30:00', '11:00:00', 2);
 
 
+-- Insert topic
+INSERT INTO topic(name, duration, available_spots, fair_id, psychologist_id, reservation_id)
+VALUES ('The Impact of Social Media on Mental Health', 1, 40, 1, 1, 1),
+       ('Mindfulness and Stress Reduction Techniques', 0.5, 15, 2, 1, 2);
+
+
+-- Insert application
+INSERT INTO application(name, surname, study_year, email, student_id, topic_id)
+VALUES ('Slobodan', 'Obradovic', '4', 'sloba@gmail.com', 4, 1);
