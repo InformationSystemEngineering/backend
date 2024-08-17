@@ -14,7 +14,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class FairDto {
     private Long id;
-    private String name;
     private Date approvedStartDate;
     private Date approvedEndDate;
     private boolean isPublish;

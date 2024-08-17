@@ -1,7 +1,10 @@
 package com.example.IIS.service.impl;
 
+import com.example.IIS.domain.Faculty;
 import com.example.IIS.domain.Request;
 import com.example.IIS.domain.Workshop;
+import com.example.IIS.domain.enums.Status;
+import com.example.IIS.dto.FacultyDto;
 import com.example.IIS.dto.RequestDto;
 import com.example.IIS.dto.WorkShopDto;
 import com.example.IIS.repository.RequestRepository;
@@ -11,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RequestServiceImpl implements RequestService {
@@ -60,5 +66,21 @@ public class RequestServiceImpl implements RequestService {
         mail.setText("A new request has been created with ID: " + requestDto.getId());
 
         emailSender.sendEmail(mail);
+    }
+
+
+    @Override
+    public List<RequestDto> getAllAcceptedRequest() {
+        List<Request> requests=requestRepository.findAll();
+        RequestDto requestDto= new RequestDto();
+        List<RequestDto> requestDtos =new ArrayList<RequestDto>();
+
+        for (Request request : requests) {
+            if(request.getStatus().equals(Status.ACCEPTED)){
+                requestDto=mapToDTO(request);
+                requestDtos.add(requestDto);
+            }
+        }
+        return requestDtos;
     }
 }

@@ -69,14 +69,24 @@ public class FairServiceImpl implements FairService {
         Fair existingFair = fairRepository.findById(dto.getId()).orElseThrow(() -> new EntityNotFoundException("Fair not found"));
 
         // Postavite nove vrednosti na osnovu informacija iz FairDto objekta
-        existingFair.setName(dto.getName());
         existingFair.setPublish(true); // Ovo možete promeniti u skladu sa logikom aplikacije
 
         // Vratite ažurirani Fair objekat
         return fairRepository.save(existingFair);
     }
 
+    @Override
+    public List<FairDto> getAllFairsByRequestId(long requestId) {
+        List<Fair> fairs=fairRepository.findAll();
+        FairDto fairDto=new FairDto();
+        List<FairDto> fairDtos =new ArrayList<FairDto>();
 
-
-
+        for (Fair fair : fairs) {
+            if(fair.getRequest().getId() == requestId){
+                fairDto=mapToDTO(fair);
+                fairDtos.add(fairDto);
+            }
+        }
+        return fairDtos;
+    }
 }

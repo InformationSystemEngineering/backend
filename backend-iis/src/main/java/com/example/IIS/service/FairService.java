@@ -13,4 +13,5 @@ public interface FairService {
 
     Fair publishFair(FairDto dto);
 
+    List<FairDto> getAllFairsByRequestId(long requestId);
 }

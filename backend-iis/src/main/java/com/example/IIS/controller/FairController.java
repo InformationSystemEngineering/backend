@@ -66,4 +66,10 @@ public class FairController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/getAllFairsByRequestId/{requestId}")
+    public ResponseEntity<List<FairDto>> getAllFairsByRequestId(@PathVariable(name = "requestId") long requestId) {
+        List<FairDto> allFairsByRequestId = fairService.getAllFairsByRequestId(requestId);
+        return new ResponseEntity<>(allFairsByRequestId, HttpStatus.OK);
+    }
 }

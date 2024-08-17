@@ -22,7 +22,6 @@ public class Fair {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
     private Date approvedStartDate;
     private Date approvedEndDate;
     private boolean isPublish;
