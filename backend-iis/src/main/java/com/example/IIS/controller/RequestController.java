@@ -1,6 +1,7 @@
 package com.example.IIS.controller;
 
 import com.example.IIS.dto.FacultyDto;
+import com.example.IIS.dto.RequestDetailDto;
 import com.example.IIS.dto.RequestDto;
 import com.example.IIS.dto.WorkShopDto;
 import com.example.IIS.service.RequestService;
@@ -29,5 +30,17 @@ public class RequestController {
     public ResponseEntity<List<RequestDto>> getAllAcceptedRequest() {
         List<RequestDto> allAcceptedRequest = requestService.getAllAcceptedRequest();
         return new ResponseEntity<>(allAcceptedRequest, HttpStatus.OK);
+    }
+
+    @GetMapping("/getRequestDetails/{requestId}")
+    public ResponseEntity<RequestDetailDto> getRequestDetails(@PathVariable(name = "requestId") long requestId) {
+        RequestDetailDto requestDetails = requestService.getRequestDetailsById(requestId);
+        return new ResponseEntity<>(requestDetails, HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllAcceptedRequestDetails")
+    public ResponseEntity<List<RequestDetailDto>> getAllAcceptedRequestDetails() {
+        List<RequestDetailDto> requestDetails = requestService.getAllAcceptedRequestDetails();
+        return new ResponseEntity<>(requestDetails, HttpStatus.OK);
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FairServiceImpl implements FairService {
@@ -89,4 +90,14 @@ public class FairServiceImpl implements FairService {
         }
         return fairDtos;
     }
+
+    public FairDto getFairByRequestId(long requestId) {
+        Optional<Fair> optionalFair = fairRepository.findByRequestId(requestId);
+        if (optionalFair.isPresent()) {
+            return mapper.map(optionalFair.get(), FairDto.class);
+        } else {
+            return null; // Vratite null ako Fair nije pronađen
+        }
+    }
+
 }
