@@ -12,4 +12,5 @@ public interface FairRepository extends JpaRepository<Fair, Long> {
 
     Optional<Fair> findByRequestId(long requestId);
 
+
 }

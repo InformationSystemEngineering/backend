@@ -1,5 +1,6 @@
 package com.example.IIS.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class Topic {
     private Long availableSpots;
 
     @JoinColumn(name = "fair_id")
+    @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     private Fair fair;
 
