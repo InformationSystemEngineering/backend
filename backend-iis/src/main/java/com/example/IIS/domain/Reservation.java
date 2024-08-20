@@ -1,5 +1,6 @@
 package com.example.IIS.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ public class Reservation {
 
     @JoinColumn(name = "classroom_id")
     @ManyToOne(fetch=FetchType.LAZY)
+    @JsonBackReference
     private Classroom classroom;
 
     @OneToOne(mappedBy = "reservation")

@@ -1,5 +1,6 @@
 package com.example.IIS.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,5 +33,6 @@ public class Classroom {
     private Request request;
 
     @OneToMany(mappedBy = "classroom", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Reservation> reservations = new HashSet<Reservation>();
 }

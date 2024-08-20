@@ -16,4 +16,5 @@ public class ReservationDto {
     private Long id;
     private Time startTime;
     private Time endTime;
+    private Long classroomId;
 }
