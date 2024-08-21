@@ -48,4 +48,17 @@ public class PsychologistServiceImpl implements PsychologistService {
         List<Psychologist> psychologists = psychologistRepo.findByFairId(fairId); // Pretraga psihologa na osnovu fairId
         return psychologists.stream().map(this::mapToDTO).collect(Collectors.toList()); // Mapiranje psihologa na DTO objekte
     }
+
+
+
+    public List<PsychologistDto> getAllPsychologists() {
+        List<Psychologist> psychologists = psychologistRepo.findAll();
+        return psychologists.stream().map(psychologist -> new PsychologistDto(
+                psychologist.getId(),
+                psychologist.getName(),
+                psychologist.getLastName(),
+                psychologist.getBiography(),
+                psychologist.getImageUrl()
+        )).collect(Collectors.toList());
+    }
 }

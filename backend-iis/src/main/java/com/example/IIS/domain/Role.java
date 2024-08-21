@@ -1,6 +1,7 @@
 package com.example.IIS.domain;
 
 import com.example.IIS.domain.enums.UserRole;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class Role {
     private String name;
 
     @OneToMany(mappedBy = "role", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<User> users = new HashSet<User>();
 
 }

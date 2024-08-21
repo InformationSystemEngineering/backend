@@ -10,4 +10,6 @@ public interface PsychologistService {
     PsychologistDto createPsych(PsychologistDto psychologistDto);
 
     List<PsychologistDto> getPsychologistsForFair(Long fairId);
+
+    List<PsychologistDto> getAllPsychologists();
 }
