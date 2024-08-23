@@ -1,5 +1,6 @@
 package com.example.IIS.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,7 @@ public class Topic {
 
     @JoinColumn(name = "psychologist_id")
     @ManyToOne(fetch=FetchType.LAZY)
+    @JsonBackReference
     private Psychologist psychologist;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -3,9 +3,11 @@ package com.example.IIS.controller;
 import com.example.IIS.domain.Topic;
 import com.example.IIS.domain.TopicCreationRequest;
 import com.example.IIS.domain.UpdateReservationRequest;
+import com.example.IIS.dto.MessageDto;
 import com.example.IIS.dto.TopicWithDetailsDto;
 import com.example.IIS.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +36,7 @@ public class TopicController {
         List<TopicWithDetailsDto> topicsWithDetails = topicService.getTopicsWithDetails(requestId);
         return ResponseEntity.ok(topicsWithDetails);
     }
+
 
 
 }

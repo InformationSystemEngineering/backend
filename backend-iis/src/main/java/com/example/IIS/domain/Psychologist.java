@@ -1,6 +1,7 @@
 package com.example.IIS.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +31,6 @@ public class Psychologist  extends User{
     private Set<StudentInternship> studentInternships;
 
     @OneToMany(mappedBy = "psychologist", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonManagedReference
     private Set<Topic> topics = new HashSet<Topic>();
 }

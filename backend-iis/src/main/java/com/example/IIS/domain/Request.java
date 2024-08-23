@@ -1,6 +1,7 @@
 package com.example.IIS.domain;
 
 import com.example.IIS.domain.enums.Status;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class Request {
 
     @JoinColumn(name = "faculty_id")
     @ManyToOne(fetch=FetchType.LAZY)
+    @JsonBackReference
     private Faculty faculty;
 
     @OneToMany(mappedBy = "request", fetch=FetchType.LAZY, cascade = CascadeType.ALL)

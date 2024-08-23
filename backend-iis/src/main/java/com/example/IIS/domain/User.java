@@ -2,6 +2,7 @@ package com.example.IIS.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -46,6 +47,7 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
     private Set<Request> requests = new HashSet<Request>();
 
 }
