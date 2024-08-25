@@ -14,4 +14,6 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
     List<Topic> findByFairId(Long fairId);
 
+    Topic findByPsychologistId(Long reservationId);
+
 }

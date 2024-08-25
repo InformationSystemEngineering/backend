@@ -1,11 +1,10 @@
 package com.example.IIS.service.impl;
 
-import com.example.IIS.domain.Classroom;
-import com.example.IIS.domain.Fair;
-import com.example.IIS.domain.Reservation;
-import com.example.IIS.domain.Topic;
+import com.example.IIS.domain.*;
+import com.example.IIS.dto.TopicDto;
 import com.example.IIS.dto.TopicWithDetailsDto;
 import com.example.IIS.repository.FairRepository;
+import com.example.IIS.repository.PsychologistRepo;
 import com.example.IIS.repository.ReservationRepository;
 import com.example.IIS.repository.TopicRepository;
 import com.example.IIS.service.TopicService;
@@ -26,6 +25,9 @@ public class TopicServiceImpl implements TopicService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    private PsychologistRepo psychologistRepo;
 
     public Topic createTopic(Long requestId, String name, Long duration, Long availableSpots) {
         // Pronađi fair na osnovu requestId
@@ -85,7 +87,36 @@ public class TopicServiceImpl implements TopicService {
     }
 
 
+    public TopicDto updateTopicWithPsychologist(UpdatePsychologistRequest updateRequest) {
+        String topicName = updateRequest.getTopicName();
+        Long psychologistId = updateRequest.getPsychologistId();
 
+        Topic topic = topicRepository.findByName(topicName);
+        if (topic != null) {
+            // If psychologistId is null, do nothing and return the existing topic data
+            if (psychologistId == null) {
+                // Return the existing topic as a TopicDto without making changes
+                return new TopicDto(topic.getId(), topic.getName(), topic.getDuration(),
+                        topic.getAvailableSpots(),
+                        topic.getPsychologist() != null ? topic.getPsychologist().getId() : null,
+                        topic.getReservation() != null ? topic.getReservation().getId() : null);
+            }
+
+            // Find the psychologist by ID
+            Psychologist psychologist = psychologistRepo.findById(psychologistId)
+                    .orElseThrow(() -> new RuntimeException("Psychologist not found with ID: " + psychologistId));
+
+            // Assign the psychologist to the topic
+            topic.setPsychologist(psychologist);
+            topicRepository.save(topic);
+
+            // Return the updated topic as a TopicDto
+            return new TopicDto(topic.getId(), topic.getName(), topic.getDuration(),
+                    topic.getAvailableSpots(), psychologist.getId(),
+                    topic.getReservation() != null ? topic.getReservation().getId() : null);
+        }
+        throw new RuntimeException("Topic not found with name: " + topicName);
+    }
 
 
 

@@ -2,8 +2,10 @@ package com.example.IIS.controller;
 
 import com.example.IIS.domain.Topic;
 import com.example.IIS.domain.TopicCreationRequest;
+import com.example.IIS.domain.UpdatePsychologistRequest;
 import com.example.IIS.domain.UpdateReservationRequest;
 import com.example.IIS.dto.MessageDto;
+import com.example.IIS.dto.TopicDto;
 import com.example.IIS.dto.TopicWithDetailsDto;
 import com.example.IIS.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,12 @@ public class TopicController {
     public ResponseEntity<List<TopicWithDetailsDto>> getTopicsWithDetails(@PathVariable Long requestId) {
         List<TopicWithDetailsDto> topicsWithDetails = topicService.getTopicsWithDetails(requestId);
         return ResponseEntity.ok(topicsWithDetails);
+    }
+
+    @PutMapping("/update-psychologist")
+    public ResponseEntity<TopicDto> updateTopicWithPsychologist(@RequestBody UpdatePsychologistRequest updateRequest) {
+        TopicDto updatedTopicDto = topicService.updateTopicWithPsychologist(updateRequest);
+        return ResponseEntity.ok(updatedTopicDto);
     }
 
 
