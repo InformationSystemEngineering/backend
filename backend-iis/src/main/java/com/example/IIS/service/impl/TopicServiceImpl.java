@@ -75,6 +75,7 @@ public class TopicServiceImpl implements TopicService {
             Reservation reservation = topic.getReservation();
             Classroom classroom = reservation != null ? reservation.getClassroom() : null;
             return new TopicWithDetailsDto(
+                    topic.getId(),
                     topic.getName() != null ? topic.getName() : "No Name",
                     classroom != null ? classroom.getName() : "No Classroom",
                     reservation != null ? reservation.getStartTime() : null,

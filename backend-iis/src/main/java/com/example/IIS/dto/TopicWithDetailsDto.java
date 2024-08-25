@@ -3,12 +3,14 @@ package com.example.IIS.dto;
 import java.sql.Time;
 
 public class TopicWithDetailsDto {
+    private Long topicId;
     private String topicName;
     private String classroomName;
     private Time startTime;
     private Time endTime;
 
-    public TopicWithDetailsDto(String topicName, String classroomName, Time startTime, Time endTime) {
+    public TopicWithDetailsDto(Long topicId, String topicName, String classroomName, Time startTime, Time endTime) {
+        this.topicId = topicId;
         this.topicName = topicName;
         this.classroomName = classroomName;
         this.startTime = startTime;
@@ -17,6 +19,14 @@ public class TopicWithDetailsDto {
 
     // Konstruktor, geteri i seteri
 
+
+    public Long getTopicId() {
+        return topicId;
+    }
+
+    public void setTopicId(Long topicId) {
+        this.topicId = topicId;
+    }
 
     public String getTopicName() {
         return topicName;
