@@ -118,6 +118,29 @@ public class TopicServiceImpl implements TopicService {
         throw new RuntimeException("Topic not found with name: " + topicName);
     }
 
+    public List<TopicWithDetailsDto> getTopicsWithDetailsNoPsychologist(Long requestId) {
+        // Pronađi Fair na osnovu requestId
+        Fair fair = fairRepository.findByRequestId(requestId)
+                .orElseThrow(() -> new RuntimeException("Fair not found for request id: " + requestId));
+
+        // Pronađi sve Topic entitete povezane sa ovim Fair gde je psychologistId null
+        List<Topic> topics = topicRepository.findByFairId(fair.getId());
+
+        return topics.stream()
+                .filter(topic -> topic.getPsychologist() == null) // Proverava da li je Psychologist objekat null
+                .map(topic -> {
+                    Reservation reservation = topic.getReservation();
+                    Classroom classroom = reservation != null ? reservation.getClassroom() : null;
+                    return new TopicWithDetailsDto(
+                            topic.getId(),
+                            topic.getName() != null ? topic.getName() : "No Name",
+                            classroom != null ? classroom.getName() : "No Classroom",
+                            reservation != null ? reservation.getStartTime() : null,
+                            reservation != null ? reservation.getEndTime() : null
+                    );
+                })
+                .collect(Collectors.toList());
+    }
 
 
 

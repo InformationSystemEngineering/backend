@@ -45,6 +45,12 @@ public class TopicController {
         return ResponseEntity.ok(updatedTopicDto);
     }
 
+    @GetMapping("/topics-with-details-no-psychologist/{requestId}")
+    public ResponseEntity<List<TopicWithDetailsDto>> getTopicsWithDetailsNoPsychologist(@PathVariable Long requestId) {
+        List<TopicWithDetailsDto> topicsWithDetails = topicService.getTopicsWithDetailsNoPsychologist(requestId);
+        return ResponseEntity.ok(topicsWithDetails);
+    }
+
 
 
 }

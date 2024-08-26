@@ -21,7 +21,7 @@ VALUES (4, 'Psiholoski fakultet NS');
 
 -- Insert psychologists
 INSERT INTO psychologist(id, biography)
-VALUES (1, 'super'),
+VALUES (2, 'super'),
        (5, 'ok');
 
 
@@ -72,8 +72,8 @@ VALUES ('08:30:00', '09:30:00', 1),
 
 -- Insert topic
 INSERT INTO topic(name, duration, available_spots, fair_id, psychologist_id, reservation_id)
-VALUES ('The Impact of Social Media on Mental Health', 1, 40, 1, 1, 1),
-       ('Mindfulness and Stress Reduction Techniques', 0.5, 15, 2, 1, 2);
+VALUES ('The Impact of Social Media on Mental Health', 1, 40, 1, 2, 1),
+       ('Mindfulness and Stress Reduction Techniques', 0.5, 15, 2, 2, 2);
 
 
 -- Insert application
