@@ -142,6 +142,37 @@ public class TopicServiceImpl implements TopicService {
                 .collect(Collectors.toList());
     }
 
+    public List<TopicWithDetailsDto> getTopicsForPsychologist(Long psychologistId) {
+        // Dobavi sve topice na osnovu psychologistId
+        List<Topic> topics = topicRepository.findByPsychologist_Id(psychologistId);
 
+        // Mapiraj u TopicWithDetailsDto
+        return topics.stream().map(topic -> {
+            // Provera null vrednosti za rezervacije i učionice
+            Time startTime = null;
+            Time endTime = null;
+            String classroomName = "No Classroom";
+
+            if (topic.getReservation() != null) {
+                if (topic.getReservation().getStartTime() != null) {
+                    startTime = topic.getReservation().getStartTime();
+                }
+                if (topic.getReservation().getEndTime() != null) {
+                    endTime = topic.getReservation().getEndTime();
+                }
+                if (topic.getReservation().getClassroom() != null) {
+                    classroomName = topic.getReservation().getClassroom().getName();
+                }
+            }
+
+            return new TopicWithDetailsDto(
+                    topic.getId(),
+                    topic.getName(),
+                    classroomName,
+                    startTime,
+                    endTime
+            );
+        }).collect(Collectors.toList());
+    }
 
 }

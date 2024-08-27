@@ -2,6 +2,7 @@ package com.example.IIS.controller;
 
 import com.example.IIS.domain.Psychologist;
 import com.example.IIS.dto.PsychologistDto;
+import com.example.IIS.dto.PsychologistWithTopicsDto;
 import com.example.IIS.repository.PsychologistRepo;
 import com.example.IIS.service.PsychologistService;
 import com.example.IIS.service.ReservationService;
@@ -23,6 +24,12 @@ public class PsychologistContoller {
     @GetMapping("/psychologists")
     public ResponseEntity<List<PsychologistDto>> getAllPsychologists() {
         List<PsychologistDto> psychologists = psychologistService.getAllPsychologists();
+        return ResponseEntity.ok(psychologists);
+    }
+
+    @GetMapping("/with-topics")
+    public ResponseEntity<List<PsychologistWithTopicsDto>> getAllPsychologistsWithTopics() {
+        List<PsychologistWithTopicsDto> psychologists = psychologistService.getAllPsychologistsWithTopics();
         return ResponseEntity.ok(psychologists);
     }
 

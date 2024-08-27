@@ -7,6 +7,7 @@ import com.example.IIS.domain.UpdateReservationRequest;
 import com.example.IIS.dto.MessageDto;
 import com.example.IIS.dto.TopicDto;
 import com.example.IIS.dto.TopicWithDetailsDto;
+import com.example.IIS.repository.TopicRepository;
 import com.example.IIS.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,12 +15,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/topics")
 public class TopicController {
     @Autowired
     private TopicService topicService;
+
+    @Autowired
+    private TopicRepository topicRepository;
 
     @PostMapping("/create")
     public ResponseEntity<Topic> createTopic(@RequestBody TopicCreationRequest request) {
@@ -51,6 +56,10 @@ public class TopicController {
         return ResponseEntity.ok(topicsWithDetails);
     }
 
-
+    @GetMapping("/psychologist")
+    public List<TopicWithDetailsDto> getTopicsForPsychologist(@RequestParam Long psychologistId) {
+        // Koristi servis za preuzimanje topic-a
+        return topicService.getTopicsForPsychologist(psychologistId);
+    }
 
 }

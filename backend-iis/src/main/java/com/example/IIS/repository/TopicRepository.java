@@ -16,4 +16,6 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
     Topic findByPsychologistId(Long reservationId);
 
+    List<Topic> findByPsychologist_Id(Long reservationId);
+
 }

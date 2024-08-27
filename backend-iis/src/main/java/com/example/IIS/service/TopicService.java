@@ -14,4 +14,5 @@ public interface TopicService {
     List<TopicWithDetailsDto> getTopicsWithDetails(Long requestId);
     TopicDto updateTopicWithPsychologist(UpdatePsychologistRequest updateRequest);
     List<TopicWithDetailsDto> getTopicsWithDetailsNoPsychologist(Long requestId);
+    List<TopicWithDetailsDto> getTopicsForPsychologist(Long psychologistId);
 }

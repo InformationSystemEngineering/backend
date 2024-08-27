@@ -3,6 +3,8 @@ package com.example.IIS.service.impl;
 import com.example.IIS.domain.Psychologist;
 import com.example.IIS.domain.Workshop;
 import com.example.IIS.dto.PsychologistDto;
+import com.example.IIS.dto.PsychologistWithTopicsDto;
+import com.example.IIS.dto.TopicWithDetailsDto;
 import com.example.IIS.dto.WorkShopDto;
 import com.example.IIS.repository.PsychologistRepo;
 import com.example.IIS.repository.WorkshopRepo;
@@ -11,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,5 +63,25 @@ public class PsychologistServiceImpl implements PsychologistService {
                 psychologist.getBiography(),
                 psychologist.getImageUrl()
         )).collect(Collectors.toList());
+    }
+
+    public List<PsychologistWithTopicsDto> getAllPsychologistsWithTopics() {
+        List<Psychologist> psychologists = psychologistRepo.findAll();
+        return psychologists.stream()
+                .map(psychologist -> new PsychologistWithTopicsDto(
+                        psychologist.getId(),
+                        psychologist.getName(),
+                        psychologist.getLastName(),
+                        psychologist.getTopics().stream()
+                                .map(topic -> new TopicWithDetailsDto(
+                                        topic.getId(),
+                                        topic.getName(),
+                                        topic.getReservation().getClassroom().getName(),
+                                        Time.valueOf(topic.getReservation().getStartTime().toLocalTime()), // Ensuring correct type conversion
+                                        Time.valueOf(topic.getReservation().getEndTime().toLocalTime()) // Ensuring correct type conversion
+                                ))
+                                .collect(Collectors.toList())
+                ))
+                .collect(Collectors.toList());
     }
 }
