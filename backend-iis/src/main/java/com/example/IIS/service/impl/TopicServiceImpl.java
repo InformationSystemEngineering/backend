@@ -61,6 +61,7 @@ public class TopicServiceImpl implements TopicService {
 
             // Poveži rezervaciju sa temom
             topic.setReservation(reservation);
+            topic.setAvailableSpots(reservation.getClassroom().getCapacity());
             topicRepository.save(topic);
         }
         return topic;
