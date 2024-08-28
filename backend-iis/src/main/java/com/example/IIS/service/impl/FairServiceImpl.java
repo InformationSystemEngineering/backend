@@ -100,4 +100,11 @@ public class FairServiceImpl implements FairService {
         }
     }
 
+    public void updateFairPublishStatus(Long fairId, boolean isPublish) {
+        Fair fair = fairRepository.findById(fairId)
+                .orElseThrow(() -> new IllegalArgumentException("Fair not found with ID: " + fairId));
+        fair.setPublish(isPublish);
+        fairRepository.save(fair);
+    }
+
 }

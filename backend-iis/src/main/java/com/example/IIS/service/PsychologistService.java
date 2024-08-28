@@ -1,5 +1,6 @@
 package com.example.IIS.service;
 
+import com.example.IIS.domain.Psychologist;
 import com.example.IIS.dto.PsychologistDto;
 import com.example.IIS.dto.PsychologistWithTopicsDto;
 import com.example.IIS.dto.RegisterDTO;
@@ -14,4 +15,5 @@ public interface PsychologistService {
 
     List<PsychologistDto> getAllPsychologists();
     List<PsychologistWithTopicsDto> getAllPsychologistsWithTopics();
+    PsychologistDto getPsychologistByTopicId(Long topicId);
 }

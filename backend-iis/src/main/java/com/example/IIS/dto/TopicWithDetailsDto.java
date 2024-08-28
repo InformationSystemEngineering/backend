@@ -1,63 +1,24 @@
 package com.example.IIS.dto;
 
-import java.sql.Time;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.sql.Time;
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TopicWithDetailsDto {
     private Long topicId;
     private String topicName;
     private String classroomName;
     private Time startTime;
     private Time endTime;
-
-    public TopicWithDetailsDto(Long topicId, String topicName, String classroomName, Time startTime, Time endTime) {
-        this.topicId = topicId;
-        this.topicName = topicName;
-        this.classroomName = classroomName;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
-
-    // Konstruktor, geteri i seteri
+    private String facultyName;  // New field
+    private String requestName;
 
 
-    public Long getTopicId() {
-        return topicId;
-    }
-
-    public void setTopicId(Long topicId) {
-        this.topicId = topicId;
-    }
-
-    public String getTopicName() {
-        return topicName;
-    }
-
-    public void setTopicName(String topicName) {
-        this.topicName = topicName;
-    }
-
-    public String getClassroomName() {
-        return classroomName;
-    }
-
-    public void setClassroomName(String classroomName) {
-        this.classroomName = classroomName;
-    }
-
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
-
-    public Time getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
-    }
 }
 

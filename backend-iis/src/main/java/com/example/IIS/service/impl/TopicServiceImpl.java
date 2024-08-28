@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Time;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -81,7 +82,9 @@ public class TopicServiceImpl implements TopicService {
                     topic.getName() != null ? topic.getName() : "No Name",
                     classroom != null ? classroom.getName() : "No Classroom",
                     reservation != null ? reservation.getStartTime() : null,
-                    reservation != null ? reservation.getEndTime() : null
+                    reservation != null ? reservation.getEndTime() : null,
+                    topic.getFair().getRequest().getFaculty().getName(),
+                    topic.getFair().getRequest().getName()
             );
         }).collect(Collectors.toList());
     }
@@ -136,23 +139,28 @@ public class TopicServiceImpl implements TopicService {
                             topic.getName() != null ? topic.getName() : "No Name",
                             classroom != null ? classroom.getName() : "No Classroom",
                             reservation != null ? reservation.getStartTime() : null,
-                            reservation != null ? reservation.getEndTime() : null
+                            reservation != null ? reservation.getEndTime() : null,
+                            topic.getFair().getRequest().getFaculty().getName(),
+                            topic.getFair().getRequest().getName()
                     );
                 })
                 .collect(Collectors.toList());
     }
 
     public List<TopicWithDetailsDto> getTopicsForPsychologist(Long psychologistId) {
-        // Dobavi sve topice na osnovu psychologistId
+        // Retrieve all topics based on psychologistId
         List<Topic> topics = topicRepository.findByPsychologist_Id(psychologistId);
 
-        // Mapiraj u TopicWithDetailsDto
+        // Map to TopicWithDetailsDto
         return topics.stream().map(topic -> {
-            // Provera null vrednosti za rezervacije i učionice
+            // Default values
             Time startTime = null;
             Time endTime = null;
             String classroomName = "No Classroom";
+            String facultyName = "Unknown Faculty";  // Default value for faculty name
+            String requestName = "Unknown Request";  // Default value for request name
 
+            // Check for reservation and classroom details
             if (topic.getReservation() != null) {
                 if (topic.getReservation().getStartTime() != null) {
                     startTime = topic.getReservation().getStartTime();
@@ -165,14 +173,27 @@ public class TopicServiceImpl implements TopicService {
                 }
             }
 
+            // Check for faculty and request details
+            if (topic.getFair().getRequest().getFaculty() != null) {
+                facultyName = topic.getFair().getRequest().getFaculty().getName();
+            }
+            if (topic.getFair().getRequest() != null) {
+                requestName = topic.getFair().getRequest().getName();
+            }
+
             return new TopicWithDetailsDto(
                     topic.getId(),
                     topic.getName(),
                     classroomName,
                     startTime,
-                    endTime
+                    endTime,
+                    facultyName,
+                    requestName
             );
         }).collect(Collectors.toList());
     }
+
+
+
 
 }

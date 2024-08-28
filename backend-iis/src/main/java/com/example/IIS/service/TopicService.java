@@ -1,5 +1,6 @@
 package com.example.IIS.service;
 
+import com.example.IIS.domain.Psychologist;
 import com.example.IIS.domain.Topic;
 import com.example.IIS.domain.UpdatePsychologistRequest;
 import com.example.IIS.dto.TopicDto;
@@ -15,4 +16,5 @@ public interface TopicService {
     TopicDto updateTopicWithPsychologist(UpdatePsychologistRequest updateRequest);
     List<TopicWithDetailsDto> getTopicsWithDetailsNoPsychologist(Long requestId);
     List<TopicWithDetailsDto> getTopicsForPsychologist(Long psychologistId);
+
 }

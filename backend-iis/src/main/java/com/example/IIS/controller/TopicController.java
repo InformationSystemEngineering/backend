@@ -1,9 +1,6 @@
 package com.example.IIS.controller;
 
-import com.example.IIS.domain.Topic;
-import com.example.IIS.domain.TopicCreationRequest;
-import com.example.IIS.domain.UpdatePsychologistRequest;
-import com.example.IIS.domain.UpdateReservationRequest;
+import com.example.IIS.domain.*;
 import com.example.IIS.dto.MessageDto;
 import com.example.IIS.dto.TopicDto;
 import com.example.IIS.dto.TopicWithDetailsDto;
@@ -61,5 +58,7 @@ public class TopicController {
         // Koristi servis za preuzimanje topic-a
         return topicService.getTopicsForPsychologist(psychologistId);
     }
+
+
 
 }

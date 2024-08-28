@@ -16,4 +16,5 @@ public interface FairService {
     List<FairDto> getAllFairsByRequestId(long requestId);
 
     FairDto getFairByRequestId(long requestId);
+    void updateFairPublishStatus(Long fairId, boolean isPublish);
 }

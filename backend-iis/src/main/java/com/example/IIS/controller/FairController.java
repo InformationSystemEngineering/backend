@@ -72,4 +72,9 @@ public class FairController {
         List<FairDto> allFairsByRequestId = fairService.getAllFairsByRequestId(requestId);
         return new ResponseEntity<>(allFairsByRequestId, HttpStatus.OK);
     }
+
+    @PutMapping("/{fairId}/publish")
+    public void updateFairPublishStatus(@PathVariable Long fairId, @RequestParam boolean isPublish) {
+        fairService.updateFairPublishStatus(fairId, isPublish);
+    }
 }

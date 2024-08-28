@@ -78,10 +78,21 @@ public class PsychologistServiceImpl implements PsychologistService {
                                         topic.getName(),
                                         topic.getReservation().getClassroom().getName(),
                                         Time.valueOf(topic.getReservation().getStartTime().toLocalTime()), // Ensuring correct type conversion
-                                        Time.valueOf(topic.getReservation().getEndTime().toLocalTime()) // Ensuring correct type conversion
+                                        Time.valueOf(topic.getReservation().getEndTime().toLocalTime()) ,
+                                        topic.getFair().getRequest().getFaculty().getName(),
+                                        topic.getFair().getRequest().getName()// Ensuring correct type conversion
                                 ))
                                 .collect(Collectors.toList())
                 ))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public PsychologistDto getPsychologistByTopicId(Long topicId) {
+        Psychologist psychologist = psychologistRepo.findPsychologistByTopicId(topicId);
+        if (psychologist != null) {
+            return new PsychologistDto(psychologist.getId(), psychologist.getName(), psychologist.getLastName(), psychologist.getBiography(), psychologist.getImageUrl());
+        }
+        return null; // Ili možete baciti custom exception ako psiholog nije pronađen
     }
 }
