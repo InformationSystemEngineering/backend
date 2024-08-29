@@ -38,7 +38,8 @@ VALUES (1, 'Harvard University - Department of Psychology', TRUE, 'https://image
 INSERT INTO request(name, start_date, end_date, faculty_id, user_id, description, status)
 VALUES ('Psychology Summit International', '2024-09-10', '2024-09-15', 1, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0),
        ('Global Psychology Forum',  '2024-09-14', '2024-09-30', 2, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0),
-       ('International Psychologists Expo', '2024-09-23', '2024-09-27', 3, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0);
+       ('International Psychologists Expo', '2024-09-23', '2024-09-27', 3, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0),
+       ('International Psychologists Fair', '2024-08-30', '2024-08-31', 3, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0);
 
 -- Insert classroom
 INSERT INTO classroom(name, date, start_time, end_time, floor, capacity, request_id)
@@ -48,14 +49,17 @@ VALUES ('A1', '2024-09-11', '08:30:00', '10:00:00', 1, 60, 1),
        ('205', '2024-09-12', '08:30:00', '10:00:00', 2, 35, 1),
        ('206', '2024-09-12', '09:30:00', '11:00:00', 2, 20, 1),
        ('A3', '2024-09-13', '10:00:00', '13:00:00', 1, 13, 1),
-       ('A2', '2024-09-12', '10:30:00', '11:00:00', 1, 45, 2);
+       ('A2', '2024-09-12', '10:30:00', '11:00:00', 1, 45, 2),
+       ('A2', '2024-08-30', '10:30:00', '11:00:00', 1, 45, 4),
+       ('A2', '2024-08-31', '10:30:00', '11:00:00', 1, 45, 4);
 
 
 -- Insert fairs
 INSERT INTO fair(approved_start_date, approved_end_date, request_id, is_publish)
 VALUES ('2024-09-11', '2024-09-13',  1, false),
-       ('2024-09-15', '2024-09-20', 2, false),
-       ('2024-09-23', '2024-09-27', 3, false);
+       ('2024-09-15', '2024-09-20', 2, true),
+       ('2024-09-23', '2024-09-27', 3, false),
+       ('2024-08-30', '2024-08-31', 4, true);
 --        (4, 'Worldwide Psychology Conference', 'Explore diverse perspectives on psychology at the Worldwide Psychology Conference, fostering dialogue on mental health and well-being globally.', '2024-07-06', '09:00:00', '17:30:00', 4, true),
 --        (5, 'Global Minds Conference', 'Engage with thought leaders and influencers at the Global Minds Conference, addressing critical issues in psychology affecting communities worldwide.', '2024-06-29', '09:00:00', '17:30:00', 5, false),
 --        (6, 'Cross-Cultural Psychology Symposium', 'Delve into the intersection of cultures and psychology at the Cross-Cultural Psychology Symposium, exploring how cultural contexts shape mental health practices.', '2024-07-01', '09:00:00', '17:30:00', 3, false),
@@ -67,15 +71,17 @@ VALUES ('2024-09-11', '2024-09-13',  1, false),
 -- Insert reservation
 INSERT INTO reservation(start_time, end_time, classroom_id)
 VALUES ('08:30:00', '09:30:00', 1),
-       ('10:30:00', '11:00:00', 2);
+       ('10:30:00', '11:00:00', 2),
+       ('10:30:00', '11:00:00', 8);
 
 
 -- Insert topic
 INSERT INTO topic(name, duration, available_spots, fair_id, psychologist_id, reservation_id)
 VALUES ('The Impact of Social Media on Mental Health', 1, 40, 1, 2, 1),
-       ('Mindfulness and Stress Reduction Techniques', 0.5, 15, 2, 2, 2);
+       ('Mindfulness and Stress Reduction Techniques', 0.5, 15, 2, 2, 2),
+       ('Mindfulness and Stress Reduction Techniques', 0.5, 15, 4, 2, 3);
 
 
 -- Insert application
 INSERT INTO application(name, surname, study_year, email, student_id, topic_id)
-VALUES ('Slobodan', 'Obradovic', '4', 'sloba@gmail.com', 4, 1);
+VALUES ('Sima', 'Simic', '4', 'sima@gmail.com', 4, 3);

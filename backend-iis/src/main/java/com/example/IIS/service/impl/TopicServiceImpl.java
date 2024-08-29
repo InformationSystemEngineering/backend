@@ -81,6 +81,7 @@ public class TopicServiceImpl implements TopicService {
             return new TopicWithDetailsDto(
                     topic.getId(),
                     topic.getName() != null ? topic.getName() : "No Name",
+                    topic.getAvailableSpots(),
                     classroom != null ? classroom.getName() : "No Classroom",
                     reservation != null ? reservation.getStartTime() : null,
                     reservation != null ? reservation.getEndTime() : null,
@@ -138,6 +139,7 @@ public class TopicServiceImpl implements TopicService {
                     return new TopicWithDetailsDto(
                             topic.getId(),
                             topic.getName() != null ? topic.getName() : "No Name",
+                            topic.getAvailableSpots(),
                             classroom != null ? classroom.getName() : "No Classroom",
                             reservation != null ? reservation.getStartTime() : null,
                             reservation != null ? reservation.getEndTime() : null,
@@ -185,6 +187,7 @@ public class TopicServiceImpl implements TopicService {
             return new TopicWithDetailsDto(
                     topic.getId(),
                     topic.getName(),
+                    topic.getAvailableSpots(),
                     classroomName,
                     startTime,
                     endTime,

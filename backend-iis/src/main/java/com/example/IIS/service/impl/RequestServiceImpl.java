@@ -15,9 +15,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 @Service
 public class RequestServiceImpl implements RequestService {
@@ -129,5 +133,62 @@ public class RequestServiceImpl implements RequestService {
 
         return requestDetailDtos;
     }
+
+
+
+    public List<RequestDetailDto> getAllAcceptedPublishedRequestDetails() {
+        List<Request> acceptedRequests = requestRepository.findByStatus(Status.ACCEPTED);
+        List<RequestDetailDto> requestDetailDtos = new ArrayList<>();
+
+        LocalDate tomorrow = LocalDate.now().plusDays(1); // Definiši sutrašnji datum
+        Date tomorrowDate = Date.from(tomorrow.atStartOfDay(ZoneId.systemDefault()).toInstant()); // Konvertuj u java.util.Date
+
+        for (Request request : acceptedRequests) {
+            RequestDto requestDto = mapToDTO(request);
+            FairDto fair = fairService.getFairByRequestId(request.getId());
+
+            // Proveri da li je fair objavljen i da li je approvedStartDate od sutrašnjeg dana ili kasnije
+            if (fair != null && fair.isPublish() && fair.getApprovedStartDate().after(tomorrowDate)) {
+                List<ClassroomDto> classrooms = classroomService.getAllClassroomsByRequestId(request.getId());
+
+                RequestDetailDto requestDetailDto = new RequestDetailDto();
+                requestDetailDto.setRequest(requestDto);
+                requestDetailDto.setFair(fair);
+                requestDetailDto.setClassrooms(classrooms);
+
+                requestDetailDtos.add(requestDetailDto);
+            }
+        }
+
+        return requestDetailDtos;
+    }
+
+    public List<RequestDetailDto> getAcceptedPublishedRequestsByStudentId(Long studentId) {
+        List<Request> acceptedRequests = requestRepository.findByStatusAndUser_Id(Status.ACCEPTED, studentId);
+        List<RequestDetailDto> requestDetailDtos = new ArrayList<>();
+
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
+        Date tomorrowDate = Date.from(tomorrow.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        for (Request request : acceptedRequests) {
+            RequestDto requestDto = mapToDTO(request);
+            FairDto fair = fairService.getFairByRequestId(request.getId());
+
+            if (fair != null && fair.isPublish() && fair.getApprovedStartDate().after(tomorrowDate)) {
+                List<ClassroomDto> classrooms = classroomService.getAllClassroomsByRequestId(request.getId());
+
+                RequestDetailDto requestDetailDto = new RequestDetailDto();
+                requestDetailDto.setRequest(requestDto);
+                requestDetailDto.setFair(fair);
+                requestDetailDto.setClassrooms(classrooms);
+
+                requestDetailDtos.add(requestDetailDto);
+            }
+        }
+
+        return requestDetailDtos;
+    }
+
+
 
 }

@@ -43,4 +43,17 @@ public class RequestController {
         List<RequestDetailDto> requestDetails = requestService.getAllAcceptedRequestDetails();
         return new ResponseEntity<>(requestDetails, HttpStatus.OK);
     }
+
+    @GetMapping("/getAllAcceptedPublishedRequestDetails")
+    public ResponseEntity<List<RequestDetailDto>> getAllAcceptedPublishedRequestDetails() {
+        List<RequestDetailDto> requestDetails = requestService.getAllAcceptedPublishedRequestDetails();
+        return new ResponseEntity<>(requestDetails, HttpStatus.OK);
+    }
+
+    @GetMapping("/accepted-published-by-student")
+    public ResponseEntity<List<RequestDetailDto>> getAcceptedPublishedRequestsByStudentId(
+            @RequestParam Long studentId) {
+        List<RequestDetailDto> requestDetails = requestService.getAcceptedPublishedRequestsByStudentId(studentId);
+        return ResponseEntity.ok(requestDetails);
+    }
 }

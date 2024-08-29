@@ -13,6 +13,7 @@ import java.sql.Time;
 public class TopicWithDetailsDto {
     private Long topicId;
     private String topicName;
+    private Long availableSpots;
     private String classroomName;
     private Time startTime;
     private Time endTime;

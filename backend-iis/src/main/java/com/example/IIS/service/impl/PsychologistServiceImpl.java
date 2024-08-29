@@ -76,6 +76,7 @@ public class PsychologistServiceImpl implements PsychologistService {
                                 .map(topic -> new TopicWithDetailsDto(
                                         topic.getId(),
                                         topic.getName(),
+                                        topic.getAvailableSpots(),
                                         topic.getReservation().getClassroom().getName(),
                                         Time.valueOf(topic.getReservation().getStartTime().toLocalTime()), // Ensuring correct type conversion
                                         Time.valueOf(topic.getReservation().getEndTime().toLocalTime()) ,

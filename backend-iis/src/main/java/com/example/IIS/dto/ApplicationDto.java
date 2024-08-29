@@ -10,9 +10,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApplicationDto {
-    private Long id;
+    private Long studentId;
+    private Long topicId;
     private String name;
     private String surname;
     private String studyYear;
     private String email;
+
 }
+

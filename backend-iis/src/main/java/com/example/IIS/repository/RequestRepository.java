@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> findByStatus(Status status);
+    List<Request> findByStatusAndUser_Id(Status status, Long studentId);
 }
