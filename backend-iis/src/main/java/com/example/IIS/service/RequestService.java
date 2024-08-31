@@ -18,4 +18,5 @@ public interface RequestService {
     List<RequestDetailDto> getAllAcceptedRequestDetails();
     List<RequestDetailDto> getAllAcceptedPublishedRequestDetails();
     List<RequestDetailDto> getAcceptedPublishedRequestsByStudentId(Long studentId);
+    List<RequestDto> getAllPendingRequest();
 }

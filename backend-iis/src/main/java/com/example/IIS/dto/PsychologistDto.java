@@ -15,5 +15,6 @@ public class PsychologistDto extends UserDTO{
     private String lastName;
     private String biography;
     private String imageUrl;
+    private boolean partOfCenter;
 
 }

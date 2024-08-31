@@ -16,4 +16,6 @@ public interface PsychologistService {
     List<PsychologistDto> getAllPsychologists();
     List<PsychologistWithTopicsDto> getAllPsychologistsWithTopics();
     PsychologistDto getPsychologistByTopicId(Long topicId);
+    List<PsychologistDto> getAllPsychologistsOrg();
+    List<PsychologistDto> getAllPsychologistsNotOrg();
 }

@@ -32,6 +32,12 @@ public class RequestController {
         return new ResponseEntity<>(allAcceptedRequest, HttpStatus.OK);
     }
 
+    @GetMapping("/getAllPendingRequest")
+    public ResponseEntity<List<RequestDto>> getAllPendingRequest() {
+        List<RequestDto> allPendingRequest = requestService.getAllPendingRequest();
+        return new ResponseEntity<>(allPendingRequest, HttpStatus.OK);
+    }
+
     @GetMapping("/getRequestDetails/{requestId}")
     public ResponseEntity<RequestDetailDto> getRequestDetails(@PathVariable(name = "requestId") long requestId) {
         RequestDetailDto requestDetails = requestService.getRequestDetailsById(requestId);

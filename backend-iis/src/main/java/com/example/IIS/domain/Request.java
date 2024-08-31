@@ -26,6 +26,8 @@ public class Request {
     private Date endDate;
     private String description;
     private Status status;
+    private Long numberOfDays;
+    private Date sentDate;
 
     @JoinColumn(name = "faculty_id")
     @ManyToOne(fetch=FetchType.LAZY)

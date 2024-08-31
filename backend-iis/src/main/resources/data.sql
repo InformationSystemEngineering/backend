@@ -11,7 +11,12 @@ VALUES (2, 'admin@gmail.com', 'https://cdn-icons-png.flaticon.com/512/219/219969
        (4, 'psychologist@gmail.com', 'https://cdn.pixabay.com/photo/2014/03/25/16/54/user-297566_640.png', 'Adamovic', 'Nikola', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'dzoni'),
        (5, 'katarina.medic01@gmail.com', 'https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745', 'Medic', 'Katarina', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'kaca'),
        (3, 'student@gmail.com', 'https://freesvg.org/img/1459344336.png', 'Simic', 'Sima', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'simi'),
-       (4, 'daca@gmail.com', 'https://cdn4.iconfinder.com/data/icons/mixed-set-1-1/128/28-512.png', 'Dacic', 'Daca', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'daca');
+       (4, 'daca@gmail.com', 'https://cdn4.iconfinder.com/data/icons/mixed-set-1-1/128/28-512.png', 'Dacic', 'Daca', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'daca'),
+       (4, 'stefa@gmail.com', 'https://cdn.pixabay.com/photo/2014/03/25/16/54/user-297566_640.png', 'Karic', 'Stefan', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'stefi'),
+       (4, 'igor@gmail.com', 'https://cdn.pixabay.com/photo/2014/03/25/16/54/user-297566_640.png', 'Glisic', 'Igor', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'igor'),
+       (4, 'milos@gmail.com', 'https://cdn.pixabay.com/photo/2014/03/25/16/54/user-297566_640.png', 'Petrovic', 'Milos', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'milos'),
+       (4, 'filip@gmail.com', 'https://cdn.pixabay.com/photo/2014/03/25/16/54/user-297566_640.png', 'Ostojic', 'Filip', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'filip'),
+       (4, 'mare@gmail.com', 'https://cdn.pixabay.com/photo/2014/03/25/16/54/user-297566_640.png', 'Ivanovic', 'Marko', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'mare');
         --(4, 'admin@gmail.com', 'adminic', 'admin', '$2a$10$QZbtkoO3UqIW8ataNZzkJuRHQqsvD5vaAmVUNFxQPIZZ8X0D9iTSu', 'admin', 'https://cdn-icons-png.flaticon.com/512/219/219969.png');
         --(5, 'zarkokn@gmail.com', 'Knezevic', 'Nina', '$2y$10$HgilFq.14RicLfcPGKBOYeuplIU.wTz1NbYeSuY5fblX4TWkUj8UW', 'student1', 'https://cdn-icons-png.flaticon.com/512/219/219969.png');
 
@@ -20,9 +25,14 @@ INSERT INTO student(id, faculty_name)
 VALUES (4, 'Psiholoski fakultet NS');
 
 -- Insert psychologists
-INSERT INTO psychologist(id, biography)
-VALUES (2, 'super'),
-       (5, 'ok');
+INSERT INTO psychologist(id, biography, part_of_center)
+VALUES (2, 'super', true),
+       (5, 'ok' , true),
+       (6,'ok1', true),
+       (7,'ok2', false),
+       (8,'ok3', false),
+       (9,'ok4', false),
+       (10,'ok5', false);
 
 
 -- Insert faculties
@@ -35,23 +45,23 @@ VALUES (1, 'Harvard University - Department of Psychology', TRUE, 'https://image
        (6, 'Yale University - Department of Psychology', TRUE, 'https://fastly.4sqi.net/img/general/600x600/84154773_raQYLNj4t4CPhQeDPDVeNkBRUcW22bek1CC8GRkI-lQ.jpg', 'katarina.medic01@gmail.com');
 
 -- Insert request
-INSERT INTO request(name, start_date, end_date, faculty_id, user_id, description, status)
-VALUES ('Psychology Summit International', '2024-09-10', '2024-09-15', 1, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0),
-       ('Global Psychology Forum',  '2024-09-14', '2024-09-30', 2, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0),
-       ('International Psychologists Expo', '2024-09-23', '2024-09-27', 3, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0),
-       ('International Psychologists Fair', '2024-08-30', '2024-08-31', 3, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0);
+INSERT INTO request(name, start_date, end_date, faculty_id, user_id, description, status, number_of_days, sent_date)
+VALUES ('Psychology Summit International', '2024-09-10', '2024-09-15', 1, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0, 3, '2024-07-06'),
+       ('Global Psychology Forum',  '2024-09-14', '2024-09-30', 2, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0, 4, '2024-07-06'),
+       ('International Psychologists Expo', '2024-09-23', '2024-09-27', 3, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0, 4, '2024-07-06'),
+       ('International Psychologists Fair', '2024-08-30', '2024-08-31', 3, 3, 'I am writing to request your approval for the proposed date for the upcoming fair. We would like to confirm this date to proceed with further planning.', 0, 3, '2024-07-06');
 
 -- Insert classroom
 INSERT INTO classroom(name, date, start_time, end_time, floor, capacity, request_id)
-VALUES ('A1', '2024-09-11', '08:30:00', '10:00:00', 1, 60, 1),
-       ('A2', '2024-09-11', '10:30:00', '11:00:00', 1, 45, 1),
-       ('A3', '2024-09-11', '10:00:00', '13:00:00', 1, 13, 1),
-       ('205', '2024-09-12', '08:30:00', '10:00:00', 2, 35, 1),
-       ('206', '2024-09-12', '09:30:00', '11:00:00', 2, 20, 1),
-       ('A3', '2024-09-13', '10:00:00', '13:00:00', 1, 13, 1),
-       ('A2', '2024-09-12', '10:30:00', '11:00:00', 1, 45, 2),
-       ('A2', '2024-08-30', '10:30:00', '11:00:00', 1, 45, 4),
-       ('A2', '2024-08-31', '10:30:00', '11:00:00', 1, 45, 4);
+VALUES ('A1', '2024-09-11', '08:30:00', '16:00:00', 1, 60, 1),
+       ('A2', '2024-09-11', '10:30:00', '17:00:00', 1, 45, 1),
+       ('A3', '2024-09-11', '10:00:00', '14:00:00', 1, 13, 1),
+       ('205', '2024-09-12', '08:30:00', '15:00:00', 2, 35, 1),
+       ('206', '2024-09-12', '09:30:00', '15:00:00', 2, 20, 1),
+       ('A3', '2024-09-13', '10:00:00', '16:00:00', 1, 13, 1),
+       ('A2', '2024-09-12', '10:30:00', '18:00:00', 1, 45, 2),
+       ('A2', '2024-08-30', '10:30:00', '15:00:00', 1, 45, 4),
+       ('A2', '2024-08-31', '10:30:00', '16:00:00', 1, 45, 4);
 
 
 -- Insert fairs

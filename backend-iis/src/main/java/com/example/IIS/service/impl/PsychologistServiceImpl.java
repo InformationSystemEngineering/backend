@@ -61,7 +61,8 @@ public class PsychologistServiceImpl implements PsychologistService {
                 psychologist.getName(),
                 psychologist.getLastName(),
                 psychologist.getBiography(),
-                psychologist.getImageUrl()
+                psychologist.getImageUrl(),
+                psychologist.isPartOfCenter()
         )).collect(Collectors.toList());
     }
 
@@ -92,8 +93,40 @@ public class PsychologistServiceImpl implements PsychologistService {
     public PsychologistDto getPsychologistByTopicId(Long topicId) {
         Psychologist psychologist = psychologistRepo.findPsychologistByTopicId(topicId);
         if (psychologist != null) {
-            return new PsychologistDto(psychologist.getId(), psychologist.getName(), psychologist.getLastName(), psychologist.getBiography(), psychologist.getImageUrl());
+            return new PsychologistDto(psychologist.getId(), psychologist.getName(), psychologist.getLastName(), psychologist.getBiography(), psychologist.getImageUrl(), psychologist.isPartOfCenter());
         }
         return null; // Ili možete baciti custom exception ako psiholog nije pronađen
     }
+
+    public List<PsychologistDto> getAllPsychologistsOrg() {
+        List<Psychologist> psychologists = psychologistRepo.findAll();
+        return psychologists.stream()
+                .filter(psychologist -> psychologist.isPartOfCenter()) // Check if partOfCenter is true
+                .map(psychologist -> new PsychologistDto(
+                        psychologist.getId(),
+                        psychologist.getName(),
+                        psychologist.getLastName(),
+                        psychologist.getBiography(),
+                        psychologist.getImageUrl(),
+                        psychologist.isPartOfCenter()
+                ))
+                .collect(Collectors.toList());
+    }
+
+
+    public List<PsychologistDto> getAllPsychologistsNotOrg() {
+        List<Psychologist> psychologists = psychologistRepo.findAll();
+        return psychologists.stream()
+                .filter(psychologist -> !psychologist.isPartOfCenter()) // Check if partOfCenter is false
+                .map(psychologist -> new PsychologistDto(
+                        psychologist.getId(),
+                        psychologist.getName(),
+                        psychologist.getLastName(),
+                        psychologist.getBiography(),
+                        psychologist.getImageUrl(),
+                        psychologist.isPartOfCenter()
+                ))
+                .collect(Collectors.toList());
+    }
+
 }

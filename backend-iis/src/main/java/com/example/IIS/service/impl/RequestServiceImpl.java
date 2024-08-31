@@ -95,6 +95,21 @@ public class RequestServiceImpl implements RequestService {
         return requestDtos;
     }
 
+    @Override
+    public List<RequestDto> getAllPendingRequest() {
+        List<Request> requests=requestRepository.findAll();
+        RequestDto requestDto= new RequestDto();
+        List<RequestDto> requestDtos =new ArrayList<RequestDto>();
+
+        for (Request request : requests) {
+            if(request.getStatus().equals(Status.PENDING)){
+                requestDto=mapToDTO(request);
+                requestDtos.add(requestDto);
+            }
+        }
+        return requestDtos;
+    }
+
     public RequestDetailDto getRequestDetailsById(long requestId) {
         Optional<Request> optionalRequest = requestRepository.findById(requestId);
         if (!optionalRequest.isPresent()) {

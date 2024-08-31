@@ -20,5 +20,8 @@ public class RequestDto {
     private String description;
     private Status status;
     private Long facultyId;
+    private FacultyDto facultyDto;
     private Long userId;
+    private Long numberOfDays;
+    private Date sentDate;
 }

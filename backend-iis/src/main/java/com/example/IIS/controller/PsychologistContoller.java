@@ -28,6 +28,18 @@ public class PsychologistContoller {
         return ResponseEntity.ok(psychologists);
     }
 
+    @GetMapping("/psychologistsOrg")
+    public ResponseEntity<List<PsychologistDto>> getAllPsychologistsOrg() {
+        List<PsychologistDto> psychologists = psychologistService.getAllPsychologistsOrg();
+        return ResponseEntity.ok(psychologists);
+    }
+
+    @GetMapping("/psychologistsNotOrg")
+    public ResponseEntity<List<PsychologistDto>> getAllPsychologistsNotOrg() {
+        List<PsychologistDto> psychologists = psychologistService.getAllPsychologistsNotOrg();
+        return ResponseEntity.ok(psychologists);
+    }
+
     @GetMapping("/with-topics")
     public ResponseEntity<List<PsychologistWithTopicsDto>> getAllPsychologistsWithTopics() {
         List<PsychologistWithTopicsDto> psychologists = psychologistService.getAllPsychologistsWithTopics();

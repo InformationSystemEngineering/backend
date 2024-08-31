@@ -21,6 +21,7 @@ public class Psychologist  extends User{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String biography;
+    private boolean partOfCenter;
 
     @OneToMany(mappedBy = "psychologist", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
